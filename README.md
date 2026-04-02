@@ -1,5 +1,7 @@
 # Amstrad-CPC-IO-Logger
 
+![Amstrad CPC IO Logger Readme](https://github.com/user-attachments/assets/658f774d-5dc8-4aa4-af35-21187db9bf84)
+
 >[!CAUTION]
 >USE AT YOUR OWN RISK.
 >There is always the risk that this Amstrad CPC IO Logger could cause harm to your CPC. Although I have tested the Amstrad CPC IO Logger, there is no guarantee that it will work properly under all circumstances.
@@ -38,17 +40,32 @@ The contents of the Capture Buffer is decoded and the CRTC and Gate Array Regist
 When CSRD goes low after an IN instruction (i.e. after INP(&F9E0) from BASIC), SM2 places a transfer count of 1 on it's RX FIFO. DMA2 detects this and places this value into the Transfer Count Trigger of DMA3. DMA3 detects this and then places the next register value from the Register Buffer onto the TX FIFO of SM2. This is then returned back to the Amstrad CPC. Repeated IN instructions will return the next value in the Register Buffer.
 
 ### Register Buffer
-The Register Buffer is a sequential list of register values written to the CRTC and Gate Array. Each IN instruction to the Amstrad CPC IO Logger will return the next value in the Register Buffer. An OUT instruction of 1 (i.e. OUT &F9E0,1 from BASIC) will reset the sequence back to the first value in the Register Buffer (i.e. CRTC R0).
+The Register Buffer is a sequential list of register values written to the CRTC and Gate Array. Each IN instruction to the Amstrad CPC IO Logger will return the next value in the Register Buffer. An OUT instruction of 0 (i.e. OUT &F9E0,0 from BASIC) will reset the sequence back to the first value in the Register Buffer (i.e. CRTC R0). Equally an OUT instruction of 0 to 43 set the position in the Register Buffer from which the next IN instruction will retrieve data. Note the Register Buffer is 64 bytes in size and a Ring Buffer, so values past 43 the ERR register will return an uninitialized value until the retrieval position wraps.
 
-<img width="1633" height="138" alt="Register Buffer" src="https://github.com/user-attachments/assets/7357d135-0b1c-4327-a24f-545cfb51d31e" />
+![Register Buffer](https://github.com/user-attachments/assets/eb22e7d6-8a88-4b7f-9677-a2e709171d31)
 
 - LR is the last CRTC Register written to.
 - LP is the last GA Pen written to.
 - L16 is the Border Pen
+- ERR is a decode error flag generate by the Amstrad CPC IO Logger (still under development).
 
 Please refer to the [CPC Wiki CRTC page](https://www.cpcwiki.eu/index.php/CRTC) and [CPC Wiki Gate Array page](https://www.cpcwiki.eu/index.php/Gate_Array) for more information.
+
+### Debug
+Debug output to a console (i.e. putty) can be enabled within the code and controlled from the Amstrad CPC with an OUT instruction between 50 and 47 (i.e. OUT &FE940,50 will print the contents of the Register Buffer to the console. See the main code for more information.
+
+![Debug](https://github.com/user-attachments/assets/b7f609a2-8dda-4b96-9fc4-6b8a04780480)
+
+## Testing
+First pass testing has so far been completed on an Amstrad CPC 6128 but the concept is working. More comprehensive testing, including error conditions is still to be completed.
+
+Below is the output from the sample BASIC program in the repository.
+
+![Example BASIC program](https://github.com/user-attachments/assets/db8a4301-8cff-4aca-944f-bd586fc40698)
+
 
 ## Acknowledgements
 - **NoRecess** for the inspiration and support on this project.
 - **RHD** members for support and encouragement.
 - **Petersfield Men's Shed IT and Electronics Group** members for support and encouragement.
+- **CPC Wiki** for the great information.
