@@ -1,0 +1,50 @@
+;
+
+
+.program csrd
+.side_set 1 opt
+ 
+    wait 0 gpio 22 side 1   ; Wait for low on CSRD (keep bus as input)
+
+    set y, 1        
+
+    mov isr, y              ; Tell the control DMA to push 1 word into TX FIFO
+
+    push block      
+
+    pull block              ; pull from TX FIFO
+
+    out pins, 8    side 0   ; output the data and change direction of data buffer as Pico to CPC
+
+    wait 1 gpio 22          ; Wait for high on CSRD (return bus to input)
+
+    nop            side 1   ; keep bus direction as CPC -> Pico
+
+% c-sdk {
+
+void csrd_program_init(PIO pio, uint sm, uint offset) {
+
+   pio_sm_set_consecutive_pindirs(pio, sm, 10, 8, true);
+   //pio_sm_set_consecutive_pindirs(pio, sm, 21, 1, true);
+   //pio_sm_set_consecutive_pindirs(pio, sm, 22, 1, false);
+
+
+   pio_sm_config c = csrd_program_get_default_config(offset);
+
+   // OUT reads GPIO 10 to GPIO 17 = D0..D7 
+   sm_config_set_out_pins(&c, 10, 8);
+   sm_config_set_sideset_pins(&c, 21);
+   sm_config_set_in_pins(&c, 22);
+
+    sm_config_set_out_shift(
+        &c,
+        true, // Shift-to-right = false (i.e. shift to left)
+        false, // Autopush enabled was true
+        32    // Autopush threshold  was 32
+    );
+
+    sm_config_set_clkdiv(&c, 1.0f); //was 10.0f
+   
+   pio_sm_init(pio, sm, offset, &c);
+}
+%}

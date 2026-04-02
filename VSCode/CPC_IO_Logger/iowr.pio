@@ -1,0 +1,44 @@
+;
+;
+;
+.program iowr
+.side_set 1 opt
+
+    wait 0 gpio 26          ; Wait for low on IOWR
+
+    in pins, 18     side 1  ; Read GPIO 0 to GPIO 17 = A0..A1 + A8..A15 + D0..D7
+
+    wait 1 gpio 26  side 1  ; Wait for high on IOWR
+
+
+% c-sdk {
+
+void iowr_program_init(PIO pio, uint sm, uint offset) {
+
+    pio_sm_set_consecutive_pindirs(pio, sm, 0, 18, false); 
+    pio_sm_set_consecutive_pindirs(pio, sm, 21, 1, true);
+    pio_sm_set_consecutive_pindirs(pio, sm, 26, 1, false);
+
+    pio_sm_config c = iowr_program_get_default_config(offset);
+
+    // IN reads GPIO 0 to GPIO 17 = A0..A1 + A8..A15 + D0..D7 
+    sm_config_set_in_pin_count(&c, 18);
+
+    // IN starts at GPIO 0 = A0
+    sm_config_set_in_pins(&c, 0);
+
+    // Side Set = DATA_AB, 1 = CPC to PICO
+    sm_config_set_sideset_pins(&c, 21);
+
+    sm_config_set_in_shift(
+        &c,
+        false, // Shift-to-right = false (i.e. shift to left)
+        true,  // Autopush enabled
+        18     // Autopush threshold
+    );
+
+    sm_config_set_clkdiv(&c, 10.0f);
+   
+    pio_sm_init(pio, sm, offset, &c);
+}
+%}
