@@ -57,7 +57,7 @@ Debug output to a console (i.e. putty) can be enabled within the code and contro
 ![Debug](https://github.com/user-attachments/assets/b7f609a2-8dda-4b96-9fc4-6b8a04780480)
 
 ## Testing
-First pass testing has so far been completed on an Amstrad CPC 6128 but the concept is working. More comprehensive testing, including error conditions is still to be completed.
+Only first pass testing has so far been completed on an Amstrad CPC 6128 but the concept is working. More comprehensive testing, including error conditions is still to be completed.
 
 Below is the output from the sample BASIC program in the repository.
 
