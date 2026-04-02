@@ -128,6 +128,7 @@ void csrd(PIO pio, uint sm, uint offset) {
 
 int main()
 {
+
     setup_bus_trans();
 
     PIO pioCap = pio0;
