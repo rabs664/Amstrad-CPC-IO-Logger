@@ -27,8 +27,7 @@ The discrete 74 series logic associated with Amstrad CPC IO Logger PCB presents 
 - IOWR: Active low on an IO Write instruction from the Amstrad CPC
 - CSRD: Active low when on an IO read instruction from the Amstrad CPC for the Amstrad CPC IO Logger IO Address (currently F9E0).
 
-<img width="1087" height="558" alt="Amstrad CPC IO Logger Design" src="https://github.com/user-attachments/assets/0eea43fd-a71e-4c0d-b5b7-e629a37eff75" />
-
+![Amstrad CPC IO Logger Design](https://github.com/user-attachments/assets/cb67ed68-e8da-4da5-a34d-9505ad5af84d)
 
 ### Capture
 When IOWR goes low, State Machine 1 (SM1) will push the contents of A8-A15** and D0-D7 onto its RX FIFO. DMA1 detects this and places the data into a Capture Buffer. Note that the Capture buffer is configured as a Rig Buffer.
