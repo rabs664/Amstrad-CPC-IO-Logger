@@ -19,7 +19,8 @@ Port &BF can be used to read values from the CRTC, but only on certain CRTC type
 ## Summary
 The Amstrad CPC only uses the top 8 address lines, A8-A15, to address standard IO devices, as illustrated below. For more information please refer to the [CPC Wiki Default IO Port Summary page](https://www.cpcwiki.eu/index.php/Default_I/O_Port_Summary). To see a list of all known ports please refer to the [CPC Wiki IO Port Summary page](https://www.cpcwiki.eu/index.php/I/O_Port_Summary). This Amstrad CPC IO logger then captures A8-A15 and D0-D7 associated with any IO Write that occurs (i.e. a Z80 OUT instruction). Any IO Writes associated with the Gate Array or CRTC are captured and can be retrieved at any point with a series of simple IO Reads to the Amstrad CPC IO logger (i.e. a Z80 IN instruction).
 
-<img width="1141" height="583" alt="Amstrad CPC IO Addressing" src="https://github.com/user-attachments/assets/00889eaa-376c-46f6-a24c-d59acc8cbe7f" />
+![Amstrad CPC IO Addressing](https://github.com/user-attachments/assets/5fddc093-4e68-40c6-9c65-82f764cc7093)
+
 
 ## Design Summary
 The discrete 74 series logic associated with Amstrad CPC IO Logger PCB presents two signals* to the Pico;
