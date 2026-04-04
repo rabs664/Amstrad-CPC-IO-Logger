@@ -28,6 +28,7 @@
     bool debugGARMR = false;             //When RMR is selected
     bool debugGAMMR = false;             //When MMR is selected
     bool debugGARMR2 = false;           //When RMR2 is selected
+    bool debugIOLog = true;            //When an IO Log message is printed
 
 
     #define PRINT_REG_BUFFER        50 //Code to print out the register buffer
@@ -38,6 +39,7 @@
     #define TOGGLE_GA_RMR           55 //Code to print GA RMR Writes
     #define TOGGLE_GA_MMR           56 //Code to print GA MMR Writes
     #define TOGGLE_GA_RMR2          57 //Code to print GA RMR2 Writes
+    #define TOGGLE_IOLOG            58 //Code to print Error Messages
 #endif
 
 /* Register Index Definitions
@@ -292,12 +294,15 @@ int main()
                             case TOGGLE_GA_RMR2:
                                 debugGARMR2 = !debugGARMR2;
                                 break;
-                            
-                            default:
-                                printf("IOLOG %04u %04u %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7);
-                                break;
                         }
+
+                        if(debugIOLog) {
+                            printf("IOLOG %04u %04u %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7);
+                        } 
+
                     #endif
+
+
 
                 }
   
