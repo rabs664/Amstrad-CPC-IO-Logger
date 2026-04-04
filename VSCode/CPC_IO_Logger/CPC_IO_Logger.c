@@ -19,8 +19,8 @@
 #define DEBUG 1
 
 #ifdef DEBUG
-    bool debugCRTCIndex = false;         //When a CRTC Index Write is detected
-    bool debugCRTCData = false;          //When a CRTC DATA Write is detected
+    bool debugCRTCIndex = true;         //When a CRTC Index Write is detected
+    bool debugCRTCData = true;          //When a CRTC DATA Write is detected
     bool debugRRead = true;             //When the read index in the the register buffer is reset
     bool debugPrintRegBuffer = true;    //When instructed print the register buffer
     bool debugGAPen = false;            //When a GA Pen is selected
@@ -294,7 +294,8 @@ int main()
                                 break;
                             
                             default:
-                            break;
+                                printf("IOLOG %04u %04u %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7);
+                                break;
                         }
                     #endif
 
