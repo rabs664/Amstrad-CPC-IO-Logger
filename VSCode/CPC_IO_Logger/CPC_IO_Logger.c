@@ -23,11 +23,11 @@
     bool debugCRTCData = false;          //When a CRTC DATA Write is detected
     bool debugRRead = true;             //When the read index in the the register buffer is reset
     bool debugPrintRegBuffer = true;    //When instructed print the register buffer
-    bool debugGAPen = true;            //When a GA Pen is selected
+    bool debugGAPen = false;            //When a GA Pen is selected
     bool debugGACol = false;             //When GA col is selected
     bool debugGARMR = false;             //When RMR is selected
     bool debugGAMMR = false;             //When MMR is selected
-    bool debugGARMR2 = false;           //When RMR2 is selected
+    bool debugGARMR2 = true;           //When RMR2 is selected
     bool debugIOLog = true;            //When an IO Log message is printed
 
 
@@ -353,12 +353,17 @@ int main()
                         registerBuffer[GA_LOWER_ROM_DISABLE_INDEX] = get_GA_LOWER_ROM_DISABLE(D0_D7);
                         registerBuffer[GA_UPPER_ROM_DISABLE_INDEX] = get_GA_UPPER_ROM_DISABLE(D0_D7);
                         registerBuffer[GA_INTERRUPT_CONTROL_INDEX] = get_GA_INTERRUPT_CONTROL(D0_D7);
+
                     } else {
                         #ifdef DEBUG
                             if(debugGARMR2) {
                                 printf("GARM2 %04u %04u %02x %02x %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7, get_GA_RMR2_ADDR_MODE(D0_D7),get_GA_RMR2_ROM_NUM(D0_D7));
                             }      
                         #endif
+
+                        registerBuffer[GA_ADDR_MODE_INDEX] = get_GA_RMR2_ADDR_MODE(D0_D7);
+                        registerBuffer[GA_ROM_NUM_INDEX] = get_GA_RMR2_ROM_NUM(D0_D7);
+                    
                     }
                 } 
                 
@@ -371,7 +376,7 @@ int main()
 
                     registerBuffer[GA_BANK_CONFIG_INDEX] = get_GA_RAM_CONFIG(D0_D7);
                     registerBuffer[GA_BANK_NUMBER_INDEX] = get_GA_BANK_NUMBER(D0_D7);
-                    
+
                 }
 
                 readIndex = (readIndex + 1) & (CAPTURE_BUFFER_SIZE - 1);

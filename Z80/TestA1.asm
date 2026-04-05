@@ -56,11 +56,11 @@ T01_L01
 	push bc				; Save loop counter
          
 		ld bc,CRTCIA
-		out (C),a
+		out (c),a
 
 		ld D, (hl)		; Get the byte to write
 		ld bc,CRTCDA
-		out (C),D
+		out (c),D
 
 		INC a			; Next Register
 		INC hl			; Next Data
@@ -74,7 +74,7 @@ T01_READ
 ;
 	ld bc,IOLOGA
 	ld a,0
-	out (C),a			; Reset the IO Logger read index
+	out (c),a			; Reset the IO Logger read index
 
 	ld b,17				; 16 CRTC Register + Last Register Written 
 	ld hl,T01_RDATA
@@ -83,7 +83,7 @@ T01_L02
 	push bc
 
 		ld bc,IOLOGA
-		in a,(C)
+		in a,(c)
 		ld (hl),a
 		INC hl
 
@@ -112,18 +112,18 @@ T01_L03
 T01_PASS
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#E1			; Test Passed
-	out (C),a
+	out (c),a
 	
     jp T02				; Goto next test
 
 T01_FAIL
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#F1			; Test Failed
-	out (C),a
+	out (c),a
 	
 	IFDEF Z80
     	halt
@@ -147,13 +147,13 @@ T02
 T02_WRITE
 	ld a,16				; Out of range CRTC Register, only 0..15 valid
 	ld bc,CRTCIA
-	out (C),a
+	out (c),a
 
 T02_READ
 	ld bc,IOLOGA
 	ld a,43
-	out (C),a			; Reset the IO Logger read index to the error 43
-	in a,(C)
+	out (c),a			; Reset the IO Logger read index to the error 43
+	in a,(c)
 
 T02_COMPARE
 	cp #1				; Expect an error value of 1
@@ -162,18 +162,18 @@ T02_COMPARE
 T02_PASS
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#E2			; Test Passed
-	out (C),a
+	out (c),a
 	
    	jp T03				; Goto next test
 
 T02_FAIL
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#F2			; Test Failed
-	out (C),a
+	out (c),a
 	
 	IFDEF Z80
     	halt
@@ -219,7 +219,7 @@ T03_L01
 T03_READ
 	ld bc,IOLOGA
 	ld a,17
-	out (C),a			; Reset the IO Logger read index to point to the pen colour data
+	out (c),a			; Reset the IO Logger read index to point to the pen colour data
 
 	ld b,18				; 16 pens + border + last pen written
 	ld hl,T03_RDATA
@@ -228,7 +228,7 @@ T03_L02
 	push bc
 
 		ld bc,IOLOGA
-		in a,(C)
+		in a,(c)
 		ld (hl),a
 		INC hl
 
@@ -253,9 +253,9 @@ T03_L03
 T03_PASS
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#E3
-	out (C),a
+	out (c),a
 	
 	jp T04				; Goto next test	
 
@@ -263,9 +263,9 @@ T03_PASS
 T03_FAIL
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#F3
-	out (C),a
+	out (c),a
 	
 	IFDEF Z80
     	halt
@@ -288,13 +288,13 @@ T04
 T04_WRITE
 	ld a,17		; Out of range Pen 17, only 0..15 + 16 for the border are valid
 	ld bc,GATEAA
-	out (C),a
+	out (c),a
 
 T04_READ
 	ld bc,IOLOGA
 	ld a,43
-	out (C),a			; Reset the IO Logger read index to the error 43
-	in a,(C)
+	out (c),a			; Reset the IO Logger read index to the error 43
+	in a,(c)
 
 T04_COMPARE
 	cp #2				; Expect an error value of 2
@@ -303,18 +303,18 @@ T04_COMPARE
 T04_PASS
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#E4			; Test Passed
-	out (C),a
+	out (c),a
 	
 	jp T05				; Goto next test
 
 T04_FAIL
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#F4			; Test Failed
-	out (C),a
+	out (c),a
 	
 	IFDEF Z80
     	halt
@@ -389,9 +389,18 @@ T05_COMPARE
 T05_PASS
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
+	out (c),a
 	ld a,#E5			; Test Passed
-	out (C),a
+	out (c),a
+	
+	jp T06				; Goto next test
+
+T05_FAIL
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (c),a
+	ld a,#F5			; Test Failed
+	out (c),a
 	
 	IFDEF Z80
     	halt
@@ -401,15 +410,145 @@ T05_PASS
 		ret
 	ENDIF
 
-T05_FAIL
+
+T06
+; 
+;
+; TEST A1
+;
+; T06
+;
+; Write to MMR regsiter, read back and compare. OUT E6 if pass, F6 if fail.
+;
+/*
+
+Bit	Value	Function
+7	1	Gate Array MMR register
+6	1
+5	x	64K bank number (0..7); always 0 on an unexpanded CPC6128, 0-7 on Standard Memory Expansions
+4	x
+3	x
+2	x	RAM Config (0..7)
+1	x
+0	x
+*/
+T06_WRITE
+	ld a,%11001010		; MMR Register, 64K bank 1, RAM Config 2
+	ld bc,GATEAA
+	out (c),a
+
+/*
+39	        40	        
+GA MMR		            	
+RAM BANK	RAM CONFIG
+*/
+T06_COMPARE
+	ld bc,IOLOGA
+	ld a,39
+	out (c),a			; Reset the IO Logger read index to point to the MMR register data Mode
+
+	in a,(c)			; Read back the MMR RAM Bank
+	cp a,1
+	jr nz, T06_FAIL
+
+	in a,(c)			; Read back the MMR RAM Config
+	cp a,2
+	jr nz, T06_FAIL
+
+T06_PASS
 	ld bc,IOLOGA
 	ld a,PRTREGBUF
-	out (C),a
-	ld a,#F5			; Test Failed
-	out (C),a
-	
+	out (c),a
+	ld a,#E6			; Test Passed
+	out (c),a
+
+	jp T07				; Goto next test
+
+T06_FAIL
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (c),a
+	ld a,#F6			; Test Failed
+	out (c),a
+
 	IFDEF Z80
-    	halt
+		halt
+	ENDIF
+
+	IFDEF CPC
+		ret
+	ENDIF
+
+
+T07
+; 
+;
+; TEST A1
+;
+; T07
+;
+; Write to RMR2 regsiter, read back and compare. OUT E7 if pass, F7 if fail.
+;
+/*
+
+Bit	Value	Function
+7	1	Gate Array RMR2 register
+6	0
+5	1
+4	x	RMR addressing mode
+3	x
+2	x	Physical ROM number (0..7)
+1	x
+0	x
+*/
+T07_WRITE
+	ld a,%10110011		; RMR2 Register, RMR addressing mode 2, Physical ROM 3
+	ld bc,GATEAA
+	out (c),a
+
+/*
+41	        42      43
+GA RMR2	
+ADDR MODE	ROM NUM ERROR
+*/
+
+T07_COMPARE
+	ld bc,IOLOGA
+	ld a,41
+	out (c),a			; Reset the IO Logger read index to point to the RMR2 register data Mode
+
+	in a,(c)			; Read back the RMR2 Addressing Mode
+	cp a,2
+	jr nz, T07_FAIL
+
+	in a,(c)			; Read back the RMR2 Physical ROM number
+	cp a,3
+	jr nz, T07_FAIL
+
+T07_PASS
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (c),a
+	ld a,#E7			; Test Passed
+	out (c),a
+
+	IFDEF Z80
+		halt
+	ENDIF
+
+	IFDEF CPC
+		ret
+	ENDIF
+
+T07_FAIL
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (c),a
+	ld a,#F7			; Test Failed
+	out (c),a
+
+	IFDEF Z80
+		halt
 	ENDIF
 
 	IFDEF CPC
