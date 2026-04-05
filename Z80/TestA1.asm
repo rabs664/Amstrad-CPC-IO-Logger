@@ -307,13 +307,7 @@ T04_PASS
 	ld a,#E4			; Test Passed
 	out (C),a
 	
-	IFDEF Z80
-    	halt
-	ENDIF
-
-	IFDEF CPC
-		ret
-	ENDIF
+	jp T05				; Goto next test
 
 T04_FAIL
 	ld bc,IOLOGA
@@ -331,9 +325,96 @@ T04_FAIL
 	ENDIF
 
 
+T05
+; 
+;
+; TEST A1
+;
+; T05
+;
+; Write to RMR regsiter, read back and compare. OUT E5 if pass, F5 if fail.
+;
+
+/*
+
+Bit	Value	Function
+7	1	Gate Array RMR register
+6	0
+5	-	must be 0 on Plus machines with ASIC unlocked
+4	x	Interrupt generation control
+3	x	1=Upper ROM area disable, 0=Upper ROM area enable
+2	x	1=Lower ROM area disable, 0=Lower ROM area enable
+1	x	Graphics Mode selection
+0	x
 
 
+Bit 1	Bit 0	Screen mode
+0	0	Mode 0, 160x200 resolution, 16 colours
+0	1	Mode 1, 320x200 resolution, 4 colours
+1	0	Mode 2, 640x200 resolution, 2 colours
+1	1	Mode 3, 160x200 resolution, 4 colours (note 1)
 
+*/
+T05_WRITE
+	ld a,%10011110		; RMR Register, Mode 2, Upper ROM enabled, Lower ROM enabled, Interrupt generation disabled, Mode 2
+	ld bc,GATEAA
+	out (C),a
+	
+/*
+35	        36	    37	    38	
+GA RMR				            	
+SCREEN MODE	LROM	UROM	INT
+*/
+T05_COMPARE
+	ld bc,IOLOGA
+	ld a,35
+	out (c),a			; Reset the IO Logger read index to point to the RMR register data Mode 	
+
+	in a,(c)			; Read back the RMR Screen Mode
+	cp a,2
+	jr nz, T05_FAIL
+
+	in a,(c)			; Read back the RMR Lower ROM status
+	cp a,1
+	jr nz, T05_FAIL
+
+	in a,(c)			; Read back the RMR Upper ROM status
+	cp a,1
+	jr nz, T05_FAIL
+
+	in a,(c)			; Read back the RMR Interrupt generation status
+	cp a,1
+	jr nz, T05_FAIL
+
+T05_PASS
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (C),a
+	ld a,#E5			; Test Passed
+	out (C),a
+	
+	IFDEF Z80
+    	halt
+	ENDIF
+
+	IFDEF CPC
+		ret
+	ENDIF
+
+T05_FAIL
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (C),a
+	ld a,#F5			; Test Failed
+	out (C),a
+	
+	IFDEF Z80
+    	halt
+	ENDIF
+
+	IFDEF CPC
+		ret
+	ENDIF
 
 
 	; 16 CRTC Registers + Last Pen (LP) Written
