@@ -294,6 +294,10 @@ int main()
                             case TOGGLE_GA_RMR2:
                                 debugGARMR2 = !debugGARMR2;
                                 break;
+                            
+                            case TOGGLE_IOLOG:
+                                debugIOLog = !debugIOLog;
+                            
                         }
 
                         if(debugIOLog) {
