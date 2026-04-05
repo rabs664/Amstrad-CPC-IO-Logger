@@ -257,13 +257,7 @@ T03_PASS
 	ld a,#E3
 	out (C),a
 	
-	IFDEF Z80
-    	halt
-	ENDIF
-
-	IFDEF CPC
-		ret
-	ENDIF
+	jp T04				; Goto next test	
 
 
 T03_FAIL
@@ -280,6 +274,67 @@ T03_FAIL
 	IFDEF CPC
 		ret
 	ENDIF
+
+T04
+; 
+;
+; TEST A1
+;
+; T04
+;
+; Write to GA Pen out of range regsiter, only Pens 0-15 + 16 for the border are supported. Check for ERR value 2, OUT E2 if pass, F2 if fail.
+;
+
+T04_WRITE
+	ld a,17		; Out of range Pen 17, only 0..15 + 16 for the border are valid
+	ld bc,GATEAA
+	out (C),a
+
+T04_READ
+	ld bc,IOLOGA
+	ld a,43
+	out (C),a			; Reset the IO Logger read index to the error 43
+	in a,(C)
+
+T04_COMPARE
+	cp #2				; Expect an error value of 2
+	jr nz, T04_FAIL
+
+T04_PASS
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (C),a
+	ld a,#E4			; Test Passed
+	out (C),a
+	
+	IFDEF Z80
+    	halt
+	ENDIF
+
+	IFDEF CPC
+		ret
+	ENDIF
+
+T04_FAIL
+	ld bc,IOLOGA
+	ld a,PRTREGBUF
+	out (C),a
+	ld a,#F4			; Test Failed
+	out (C),a
+	
+	IFDEF Z80
+    	halt
+	ENDIF
+
+	IFDEF CPC
+		ret
+	ENDIF
+
+
+
+
+
+
 
 	; 16 CRTC Registers + Last Pen (LP) Written
 	;             0    1	2    3    4    5    6    7    8    9   10   11   12   13   14   15   LP

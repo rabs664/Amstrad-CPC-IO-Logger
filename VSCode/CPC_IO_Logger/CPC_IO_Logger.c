@@ -19,11 +19,11 @@
 #define DEBUG 1
 
 #ifdef DEBUG
-    bool debugCRTCIndex = true;         //When a CRTC Index Write is detected
-    bool debugCRTCData = true;          //When a CRTC DATA Write is detected
+    bool debugCRTCIndex = false;         //When a CRTC Index Write is detected
+    bool debugCRTCData = false;          //When a CRTC DATA Write is detected
     bool debugRRead = true;             //When the read index in the the register buffer is reset
     bool debugPrintRegBuffer = true;    //When instructed print the register buffer
-    bool debugGAPen = false;            //When a GA Pen is selected
+    bool debugGAPen = true;            //When a GA Pen is selected
     bool debugGACol = false;             //When GA col is selected
     bool debugGARMR = false;             //When RMR is selected
     bool debugGAMMR = false;             //When MMR is selected
