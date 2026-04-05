@@ -13,7 +13,7 @@
 37 NEXT ii
 38 lastgapen=INP(&F9E0)
 39 gamode=INP(&F9E0):galrom=INP(&F9E0):gaurom=INP(&F9E0):gaint=INP(&F9E0)
-50 gabanknum=INP(&F9E0):ganankconf=INP(&F9E0)
+50 gabanknum=INP(&F9E0):gabankconf=INP(&F9E0)
 60 gaaddrnmode=INP(&F9E0):garomnum=INP(&F9E0)
 70 errcode=INP(&F9E0)
 90 LOCATE 1,1:PRINT "CRTC ":P=5
