@@ -13,7 +13,7 @@ GATEAA		equ	#7F00
 
 IOLOGA		equ	#F9E0
 
-Z80
+Z80 equ 1
 
 ; Somewhere in upper 32K of memory
 IFDEF Z80	
@@ -76,16 +76,18 @@ T01_READ
 	ld a,0
 	out (c),a			; Reset the IO Logger read index
 
+	call DELAY
+
 	ld b,17				; 16 CRTC Register + Last Register Written 
 	ld hl,T01_RDATA
-	
+
 T01_L02
 	push bc
 
 		ld bc,IOLOGA
 		in a,(c)
 		ld (hl),a
-		INC hl
+		inc hl
 
 	pop bc
 	djnz T01_L02
@@ -149,10 +151,15 @@ T02_WRITE
 	ld bc,CRTCIA
 	out (c),a
 
+
 T02_READ
 	ld bc,IOLOGA
 	ld a,43
 	out (c),a			; Reset the IO Logger read index to the error 43
+	
+	call DELAY
+
+	ld bc,IOLOGA
 	in a,(c)
 
 T02_COMPARE
@@ -216,10 +223,14 @@ T03_L01
 	pop bc				; Restore the loop counter
 	djnz T03_L01
 
+
+
 T03_READ
 	ld bc,IOLOGA
 	ld a,17
 	out (c),a			; Reset the IO Logger read index to point to the pen colour data
+
+	call DELAY
 
 	ld b,18				; 16 pens + border + last pen written
 	ld hl,T03_RDATA
@@ -230,7 +241,7 @@ T03_L02
 		ld bc,IOLOGA
 		in a,(c)
 		ld (hl),a
-		INC hl
+		inc hl
 
 	pop bc
 	djnz T03_L02
@@ -290,10 +301,15 @@ T04_WRITE
 	ld bc,GATEAA
 	out (c),a
 
+
 T04_READ
 	ld bc,IOLOGA
 	ld a,43
 	out (c),a			; Reset the IO Logger read index to the error 43
+
+	call DELAY
+
+	ld bc,IOLOGA
 	in a,(c)
 
 T04_COMPARE
@@ -359,7 +375,8 @@ T05_WRITE
 	ld a,%10011110		; RMR Register, Mode 2, Upper ROM enabled, Lower ROM enabled, Interrupt generation disabled, Mode 2
 	ld bc,GATEAA
 	out (C),a
-	
+
+
 /*
 35	        36	    37	    38	
 GA RMR				            	
@@ -368,8 +385,11 @@ SCREEN MODE	LROM	UROM	INT
 T05_COMPARE
 	ld bc,IOLOGA
 	ld a,35
-	out (c),a			; Reset the IO Logger read index to point to the RMR register data Mode 	
+	out (c),a			; Reset the IO Logger read index to point to the RMR register data Mode
 
+	call DELAY
+
+	ld bc,IOLOGA
 	in a,(c)			; Read back the RMR Screen Mode
 	cp a,2
 	jr nz, T05_FAIL
@@ -447,6 +467,9 @@ T06_COMPARE
 	ld a,39
 	out (c),a			; Reset the IO Logger read index to point to the MMR register data Mode
 
+	call DELAY
+
+	ld bc,IOLOGA
 	in a,(c)			; Read back the MMR RAM Bank
 	cp a,1
 	jr nz, T06_FAIL
@@ -517,6 +540,9 @@ T07_COMPARE
 	ld a,41
 	out (c),a			; Reset the IO Logger read index to point to the RMR2 register data Mode
 
+	call DELAY
+
+	ld bc,IOLOGA
 	in a,(c)			; Read back the RMR2 Addressing Mode
 	cp a,2
 	jr nz, T07_FAIL
@@ -598,6 +624,20 @@ T03_COLWDATA DEFB #40+#04, #40+#0A, #40+#13, #40+#0C, #40+#0B, #40+#14, #40+#15,
 
 ; Just the coloour number to compare with the read back value + Last Pen Written
 T03_COLCDATA DEFB #04, #0A, #13, #0C, #0B, #14, #15, #0D, #06, #1E, #1F, #07, #12, #19, #04, #17, #04, #10
+
+;
+; Delay Loop after instructions to allow the IO Logger to process and instruction if debug print statements are enabled.
+;
+DELAY
+	ld bc,#FFFF
+
+DELAY_LOOP
+	dec bc
+	ld a,b
+	or c
+	jr nz,DELAY_LOOP
+	
+	ret
 
 IFDEF CPC
 	save 'test1A.bin',#8000,2300,DSK,'iolog.dsk'

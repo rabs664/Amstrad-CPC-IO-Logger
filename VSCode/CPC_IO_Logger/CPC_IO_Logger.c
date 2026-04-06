@@ -21,13 +21,13 @@
 #ifdef DEBUG
     bool debugCRTCIndex = false;         //When a CRTC Index Write is detected
     bool debugCRTCData = false;          //When a CRTC DATA Write is detected
-    bool debugRRead = true;             //When the read index in the the register buffer is reset
+    bool debugRRead = false;             //When the read index in the the register buffer is reset
     bool debugPrintRegBuffer = true;    //When instructed print the register buffer
     bool debugGAPen = false;            //When a GA Pen is selected
     bool debugGACol = false;             //When GA col is selected
     bool debugGARMR = false;             //When RMR is selected
     bool debugGAMMR = false;             //When MMR is selected
-    bool debugGARMR2 = true;           //When RMR2 is selected
+    bool debugGARMR2 = false;           //When RMR2 is selected
     bool debugIOLog = true;            //When an IO Log message is printed
 
 
@@ -268,11 +268,11 @@ int main()
                                 break;
 
                             case TOGGLE_PRINT_CRTC_INDEX:
-                                debugCRTCData = !debugCRTCData;
+                                debugCRTCIndex = !debugCRTCIndex;
                                 break;
 
                             case TOGGLE_PRINT_CRTC_DATA:
-                                debugCRTCIndex = !debugCRTCIndex;
+                                debugCRTCData = !debugCRTCData;
                                 break;
 
                             case TOGGLE_GA_PEN:
