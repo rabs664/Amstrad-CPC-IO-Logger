@@ -42,7 +42,7 @@ When CSRD goes low after an IN instruction (i.e. after INP(&F9E0) from BASIC), S
 ### Register Buffer
 The Register Buffer is a sequential list of register values written to the CRTC and Gate Array. Each IN instruction to the Amstrad CPC IO Logger will return the next value in the Register Buffer. An OUT instruction of 0 (i.e. OUT &F9E0,0 from BASIC) will reset the sequence back to the first value in the Register Buffer (i.e. CRTC R0). Equally an OUT instruction of 0 to 43 will set the position in the Register Buffer from which the next IN instruction will retrieve data. Note the Register Buffer is 64 bytes in size and a Ring Buffer, so values past 43 (the ERR Register) will return an uninitialized value until the retrieval position wraps.
 
-![Register Buffer V2](https://github.com/user-attachments/assets/ab88334e-e57a-4476-8e4a-e174c94cc8cd)
+![Register Buffer V2](https://github.com/user-attachments/assets/556f6633-b92c-491c-a885-2823ab28c29d)
 
 
 - LR is the last CRTC Register written to.
