@@ -35,8 +35,8 @@ Bit	Value	Function
 0	x	ignored
 */
 
-#define GA_SELECT_BORDER_MASK 0x10 // Bits 4 of the data are used to select the border
-#define GA_SELECT_BORDER_MASK_SHIFT 4
+//#define GA_SELECT_BORDER_MASK 0x10 // Bits 4 of the data are used to select the border
+//#define GA_SELECT_BORDER_MASK_SHIFT 4
 
 /*
 Bit	Value	Function
@@ -117,12 +117,12 @@ Bit	Value	Function
 1	x	Graphics Mode selection
 0	x
 */
-#define GA_RMR_INTERRUPT_CONTROL_MASK       0x10 // Bit 4 of the data is used to control the interrupt generation
-#define GA_RMR_INTERRUPT_CONTROL_MASK_SHIFT 4
-#define GA_RMR_UPPER_ROM_DISABLE_MASK       0x08 // Bit 3 of the data is used to disable the upper ROM area
-#define GA_RMR_UPPER_ROM_DISABLE_MASK_SHIFT 3
-#define GA_RMR_LOWER_ROM_DISABLE_MASK       0x04 // Bit 2 of the data is used to disable the lower ROM area
-#define GA_RMR_LOWER_ROM_DISABLE_MASK_SHIFT 2
+//#define GA_RMR_INTERRUPT_CONTROL_MASK       0x10 // Bit 4 of the data is used to control the interrupt generation
+//#define GA_RMR_INTERRUPT_CONTROL_MASK_SHIFT 4
+//#define GA_RMR_UPPER_ROM_DISABLE_MASK       0x08 // Bit 3 of the data is used to disable the upper ROM area
+//#define GA_RMR_UPPER_ROM_DISABLE_MASK_SHIFT 3
+//#define GA_RMR_LOWER_ROM_DISABLE_MASK       0x04 // Bit 2 of the data is used to disable the lower ROM area
+//#define GA_RMR_LOWER_ROM_DISABLE_MASK_SHIFT 2
 
 /*
 Bit 1	Bit 0	Screen mode
@@ -132,7 +132,7 @@ Bit 1	Bit 0	Screen mode
 1	1	Mode 3, 160x200 resolution, 4 colours (note 1)
 */
 
-#define GA_RMR_MODE_MASK 0x03 // Bits 0 and 1 of the data are used to select the screen mode
+//#define GA_RMR_MODE_MASK 0x03 // Bits 0 and 1 of the data are used to select the screen mode
 
 
 /*
@@ -146,9 +146,9 @@ Bit	Value	Function
 1	x
 0	x
 */
-#define GA_MMR_BANK_NUMBER_MASK         0x38 // Bit 5 of the data is used to select the 64K bank number
-#define GA_MMR_BANK_NUMBER_MASK_SHIFT   3
-#define GA_MMR_RAM_CONFIG_MASK          0x07 // Bits 0-2 of the data are used to select the RAM configuration
+//#define GA_MMR_BANK_NUMBER_MASK         0x38 // Bit 5 of the data is used to select the 64K bank number
+//#define GA_MMR_BANK_NUMBER_MASK_SHIFT   3
+//#define GA_MMR_RAM_CONFIG_MASK          0x07 // Bits 0-2 of the data are used to select the RAM configuration
 
 /*
 
@@ -164,9 +164,9 @@ Bit	Value	Function
 */
 #define GA_RMR2_BIT_5_MASK          0x20
 #define GA_RMR2_BIT_5_MASK_SHIFT    5
-#define GA_RMR2_ADDR_MODE_MASK      0x18
-#define GA_RMR2_ADDR_MODE_SHIFT     3
-#define GA_RMR2_ROM_NUM_MASK        0x7
+//#define GA_RMR2_ADDR_MODE_MASK      0x18
+//#define GA_RMR2_ADDR_MODE_SHIFT     3
+//#define GA_RMR2_ROM_NUM_MASK        0x7
 
 uint32_t get_GA_FUNCTION_SELECT(uint32_t rawData);
 
@@ -174,20 +174,4 @@ uint32_t get_GA_PEN(uint32_t rawData);
 
 uint32_t get_GA_COLOUR(uint32_t rawData);
 
-uint32_t get_GA_MODE(uint32_t rawData);
-
-uint32_t get_GA_INTERRUPT_CONTROL(uint32_t rawData);
-
-uint32_t get_GA_UPPER_ROM_DISABLE(uint32_t rawData);
-
-uint32_t get_GA_LOWER_ROM_DISABLE(uint32_t rawData);
-
-uint32_t get_GA_BANK_NUMBER(uint32_t rawData);
-
-uint32_t get_GA_RAM_CONFIG(uint32_t rawData);
-
 bool is_RMR2 (uint32_t rawData);
-
-uint32_t get_GA_RMR2_ADDR_MODE(uint32_t rawData);
-
-uint32_t get_GA_RMR2_ROM_NUM(uint32_t rawData);

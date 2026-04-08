@@ -154,8 +154,8 @@ T02_WRITE
 
 T02_READ
 	ld bc,IOLOGA
-	ld a,43
-	out (c),a			; Reset the IO Logger read index to the error 43
+	ld a,38
+	out (c),a			; Reset the IO Logger read index to the error 38
 	
 	call DELAY
 
@@ -304,8 +304,8 @@ T04_WRITE
 
 T04_READ
 	ld bc,IOLOGA
-	ld a,43
-	out (c),a			; Reset the IO Logger read index to the error 43
+	ld a,38
+	out (c),a			; Reset the IO Logger read index to the error 38
 
 	call DELAY
 
@@ -378,9 +378,9 @@ T05_WRITE
 
 
 /*
-35	        36	    37	    38	
+35	
 GA RMR				            	
-SCREEN MODE	LROM	UROM	INT
+
 */
 T05_COMPARE
 	ld bc,IOLOGA
@@ -391,19 +391,7 @@ T05_COMPARE
 
 	ld bc,IOLOGA
 	in a,(c)			; Read back the RMR Screen Mode
-	cp a,2
-	jr nz, T05_FAIL
-
-	in a,(c)			; Read back the RMR Lower ROM status
-	cp a,1
-	jr nz, T05_FAIL
-
-	in a,(c)			; Read back the RMR Upper ROM status
-	cp a,1
-	jr nz, T05_FAIL
-
-	in a,(c)			; Read back the RMR Interrupt generation status
-	cp a,1
+	cp a,%10011110		; Compate RMR
 	jr nz, T05_FAIL
 
 T05_PASS
@@ -458,24 +446,20 @@ T06_WRITE
 	out (c),a
 
 /*
-39	        40	        
+36        
 GA MMR		            	
-RAM BANK	RAM CONFIG
+
 */
 T06_COMPARE
 	ld bc,IOLOGA
-	ld a,39
-	out (c),a			; Reset the IO Logger read index to point to the MMR register data Mode
+	ld a,36
+	out (c),a			; Reset the IO Logger read index to point to the MMR register
 
 	call DELAY
 
 	ld bc,IOLOGA
-	in a,(c)			; Read back the MMR RAM Bank
-	cp a,1
-	jr nz, T06_FAIL
-
-	in a,(c)			; Read back the MMR RAM Config
-	cp a,2
+	in a,(c)			; Read back the MMR
+	cp a,%11001010		; Compare MMR
 	jr nz, T06_FAIL
 
 T06_PASS
@@ -530,25 +514,21 @@ T07_WRITE
 	out (c),a
 
 /*
-41	        42      43
+37
 GA RMR2	
-ADDR MODE	ROM NUM ERROR
+
 */
 
 T07_COMPARE
 	ld bc,IOLOGA
-	ld a,41
-	out (c),a			; Reset the IO Logger read index to point to the RMR2 register data Mode
+	ld a,37
+	out (c),a			; Reset the IO Logger read index to point to the RMR2
 
 	call DELAY
 
 	ld bc,IOLOGA
-	in a,(c)			; Read back the RMR2 Addressing Mode
-	cp a,2
-	jr nz, T07_FAIL
-
-	in a,(c)			; Read back the RMR2 Physical ROM number
-	cp a,3
+	in a,(c)			; Read back the RMR2
+	cp a,%10110011		; Compare RMR2
 	jr nz, T07_FAIL
 
 T07_PASS

@@ -16,19 +16,19 @@
 
 /* Debug Flags */
 
-//#define DEBUG 1
+#define DEBUG 1
 
 #ifdef DEBUG
     bool debugCRTCIndex = false;         //When a CRTC Index Write is detected
     bool debugCRTCData = false;          //When a CRTC DATA Write is detected
     bool debugRRead = false;             //When the read index in the the register buffer is reset
-    bool debugPrintRegBuffer = false;    //When instructed print the register buffer
+    bool debugPrintRegBuffer = true;    //When instructed print the register buffer
     bool debugGAPen = false;            //When a GA Pen is selected
     bool debugGACol = false;             //When GA col is selected
     bool debugGARMR = false;             //When RMR is selected
     bool debugGAMMR = false;             //When MMR is selected
     bool debugGARMR2 = false;           //When RMR2 is selected
-    bool debugIOLog = false;            //When an IO Log message is printed
+    bool debugIOLog = true;            //When an IO Log message is printed
 
 
     #define PRINT_REG_BUFFER        50 //Code to print out the register buffer
@@ -44,11 +44,12 @@
 
 /* Register Index Definitions
 
-REGISTER BUFFER																									
-													 																													
-0	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	        36	    37	    38	39	        40	        41	        42      43
-CRTC Regsieter Values												GA Pen Colour Values								                    GA RMR				            GA MMR		            GA RMR2	
-R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	R11	R12	R13	R14	R15	LR	P0	P1	P2	P3	P4	P5	P6	P7	P8	P9	P10	P11	P12	P13	P14	P15	P16	LP	SCREEN MODE	LROM	UROM	INT	RAM BANK	RAM CONFIG	ADDR MODE	ROM NUM ERROR
+REGISTER BUFFER V2 (RMR, MMR and RMR2 are not decoded)																													
+													 																														
+0	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35		36		37		38
+CRTC Regsieter Values												GA Pen Colour Values																										
+R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	R11	R12	R13	R14	R15	LR	P0	P1	P2	P3	P4	P5	P6	P7	P8	P9	P10	P11	P12	P13	P14	P15	P16	LP	GA RMR	GA MMR	GA RMR2	ERR
+
 
 */
 
@@ -67,24 +68,19 @@ R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	R11	R12	R13	R14	R15	LR	P0	P1	P2	P3	P4	P5	P6	P7
 #define INVALID_GA_PEN 2                    //When the selected Pen is > 16
 
 // GA RMR
-#define GA_SCREEN_MODE_INDEX 35
-#define GA_LOWER_ROM_DISABLE_INDEX 36
-#define GA_UPPER_ROM_DISABLE_INDEX 37
-#define GA_INTERRUPT_CONTROL_INDEX 38
+#define GA_RMR_INDEX 35
 
 // GA MMR
-#define GA_BANK_NUMBER_INDEX 39 
-#define GA_BANK_CONFIG_INDEX 40  
+#define GA_MMR_INDEX 36 
 
 // GA RMR2
-#define GA_ADDR_MODE_INDEX 41
-#define GA_ROM_NUM_INDEX 42
+#define GA_RMR2_INDEX 37
 
 // Error
-#define ERROR_INDEX 43
+#define ERROR_INDEX 38
 
 // Last
-#define LAST_REGISTER_INDEX 43
+#define LAST_REGISTER_INDEX 38
 
 
 /* Buffer definitions */
@@ -345,24 +341,22 @@ int main()
                     if(!is_RMR2(D0_D7)) {
                         #ifdef DEBUG
                             if(debugGARMR) {
-                                printf("GARMR %04u %04u %02x %02x %02x %02x %01x %01x %01x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7, get_GA_MODE(D0_D7),get_GA_LOWER_ROM_DISABLE(D0_D7),get_GA_UPPER_ROM_DISABLE(D0_D7),get_GA_INTERRUPT_CONTROL(D0_D7));
+                               printf("GARMR %04u %04u %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7);
+                               
                             }      
                         #endif
 
-                        registerBuffer[GA_SCREEN_MODE_INDEX] = get_GA_MODE(D0_D7);
-                        registerBuffer[GA_LOWER_ROM_DISABLE_INDEX] = get_GA_LOWER_ROM_DISABLE(D0_D7);
-                        registerBuffer[GA_UPPER_ROM_DISABLE_INDEX] = get_GA_UPPER_ROM_DISABLE(D0_D7);
-                        registerBuffer[GA_INTERRUPT_CONTROL_INDEX] = get_GA_INTERRUPT_CONTROL(D0_D7);
+                        registerBuffer[GA_RMR_INDEX] = D0_D7;
 
                     } else {
                         #ifdef DEBUG
                             if(debugGARMR2) {
-                                printf("GARM2 %04u %04u %02x %02x %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7, get_GA_RMR2_ADDR_MODE(D0_D7),get_GA_RMR2_ROM_NUM(D0_D7));
+                                printf("GARMR2 %04u %04u %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7);
+
                             }      
                         #endif
-
-                        registerBuffer[GA_ADDR_MODE_INDEX] = get_GA_RMR2_ADDR_MODE(D0_D7);
-                        registerBuffer[GA_ROM_NUM_INDEX] = get_GA_RMR2_ROM_NUM(D0_D7);
+                        
+                        registerBuffer[GA_RMR2_INDEX] = D0_D7;
                     
                     }
                 } 
@@ -370,12 +364,11 @@ int main()
                 if (A8_A15 == GATE_ARRAY_PORT && (get_GA_FUNCTION_SELECT(D0_D7) == GA_SELECT_MMR_FUNCTION)) {
                     #ifdef DEBUG
                         if(debugGAMMR) {
-                            printf("GAMMR %04u %04u %02x %02x %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7, get_GA_BANK_NUMBER(D0_D7), get_GA_RAM_CONFIG(D0_D7));
+                            printf("GAMMR %04u %04u %02x %02x %02x\n", readIndex, writeIndex, A0_A1, A8_A15, D0_D7);
                         }
                     #endif
 
-                    registerBuffer[GA_BANK_CONFIG_INDEX] = get_GA_RAM_CONFIG(D0_D7);
-                    registerBuffer[GA_BANK_NUMBER_INDEX] = get_GA_BANK_NUMBER(D0_D7);
+                    registerBuffer[GA_MMR_INDEX] = D0_D7;
 
                 }
 
