@@ -62,7 +62,7 @@ Only first pass testing has so far been completed on an Amstrad CPC 6128 but the
 
 Below is the output from the sample BASIC program in the repository.
 
-![Example BASIC program](https://github.com/user-attachments/assets/db8a4301-8cff-4aca-944f-bd586fc40698)
+![Example BASIC program](https://github.com/user-attachments/assets/37655f0b-d956-46c1-a093-968a9b0b6320)
 
 
 ## Acknowledgements
