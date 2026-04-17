@@ -27,7 +27,8 @@ The discrete 74 series logic associated with Amstrad CPC IO Logger PCB presents 
 - IOWR: Active low on an IO Write instruction from the Amstrad CPC
 - CSRD: Active low when on an IO read instruction from the Amstrad CPC for the Amstrad CPC IO Logger IO Address (currently F9E0).
 
-![Amstrad CPC IO Logger Design](https://github.com/user-attachments/assets/cb67ed68-e8da-4da5-a34d-9505ad5af84d)
+![Amstrad CPC IO Logger Design](https://github.com/user-attachments/assets/c3cb42f6-fa9a-4867-8894-0f434ba8a66f)
+
 
 ### Capture
 When IOWR goes low, State Machine 1 (SM1) will push the contents of A8-A15** and D0-D7 onto its RX FIFO. DMA1 detects this and places the data into a Capture Buffer. Note that the Capture buffer is configured as a Rig Buffer.
@@ -35,6 +36,9 @@ When IOWR goes low, State Machine 1 (SM1) will push the contents of A8-A15** and
 **A0-A1 are also capture but are not used.
 
 The contents of the Capture Buffer is decoded and the CRTC and Gate Array Register write values are placed into a Register Buffer.
+
+### Timing
+When data is placed into the Capture Buffer it is timed stamped in the Timing Buffer with time since start in micro seconds.
 
 ### Retrieve
 When CSRD goes low after an IN instruction (i.e. after INP(&F9E0) from BASIC), SM2 places a transfer count of 1 on it's RX FIFO. DMA2 detects this and places this value into the Transfer Count Trigger of DMA3. DMA3 detects this and then places the next register value from the Register Buffer onto the TX FIFO of SM2. This is then returned back to the Amstrad CPC. Repeated IN instructions will return the next value in the Register Buffer.
@@ -57,6 +61,32 @@ Debug output to a console (i.e. putty) can be enabled within the code and contro
 
 ![Debug](https://github.com/user-attachments/assets/b7f609a2-8dda-4b96-9fc4-6b8a04780480)
 
+Debug commands.
+
+| Debug                      |Value|
+| ---------------------------|-----|
+| PRINT_REG_BUFFER           | 50  |
+| TOGGLE_PRINT_CRTC_INDEX    | 51  |
+| TOGGLE_PRINT_CRTC_DATA     | 52  |
+| TOGGLE_GA_PEN              | 53  |
+| TOGGLE_GA_COL              | 54  |
+| TOGGLE_GA_RMR              | 55  |
+| TOGGLE_GA_MMR              | 56  |
+| TOGGLE_GA_RMR2             | 57  |
+| TOGGLE_IOLOG               | 58  |
+| TOGGLE_CRTC_DATA_TIMING_V1 | 59  |
+| TOGGLE_CRTC_DATA_TIMING_V2 | 60  |
+
+
+### CRTC Register Logging
+IO Writes to the CRTC Register Logging can be enabled using OUT &F9E0,60 (OUT &F9E0,60 again will disable the logging).
+
+When enabled the time stamped writes to the CRTC Registered will be loggged over USB. The logging includes a time since last write in micro seconds, the register number, the value written (in hex) and a "lag-o-meter".
+
+The "lag-o-meter" is a value from 1 to 10 indicating the decode lag behind the capture. A value of 1 is no lag and a value of 10 implies the decode has been overrun and data may be lost.
+
+![CRTC Register Logging](https://github.com/user-attachments/assets/dfb82be3-aaa2-4898-9fa2-2843bad4b6e2)
+
 ## Testing
 Only first pass testing has so far been completed on an Amstrad CPC 6128 but the concept is working. More comprehensive testing, including error conditions is still to be completed.
 
@@ -64,9 +94,13 @@ Below is the output from the sample BASIC program in the repository.
 
 ![Example BASIC program](https://github.com/user-attachments/assets/37655f0b-d956-46c1-a093-968a9b0b6320)
 
+## Project History
+### 17 April 2026 
+CRTC Register Logging
 
 ## Acknowledgements
 - **NoRecess** for the inspiration and support on this project.
 - **RHD** members for support and encouragement.
 - **Petersfield Men's Shed IT and Electronics Group** members for support and encouragement.
 - **CPC Wiki** for the great information.
+- **TinWhisker** for the Simple Pico CDC example 
