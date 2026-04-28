@@ -2,7 +2,7 @@
 ; Amstrad CPC IO Logger Test Program
 ;
 ; Version 	Date 		Changes
-; 1.0		03 APR 26	First Version
+; 1.0		17 APR 26	First Version
 ;
 ;
 ;
@@ -21,45 +21,52 @@ IFDEF Z80
 	ld sp,#FFFF
 ENDIF
 
-T01
+
 ;
-; TEST A1
+; TEST A2
 ;
 ; T01
 ;
-; Write CRTC Register 1 with an incementing value in tight loop.
+; Write CRTC Register 1 500 times at around 56usecs between writes then Register 2 at 22usecs.
 ;
-
-; Loop a a slow seed, with a deplay loop 55.75usecs			
+T01
+; Loop 500 times with a slow seed, deplay loop gives 55.75usecs			
         ld d,#00
-		ld e,#01
 		ld bc,500
 T01_L01
-		push bc
+		push bc			; Save loop counter
+		ld e,#01		; Set Register 1
 
 		ld bc,CRTCIA
 		out (c),e
 
-		ld bc,CRTCDA
+		ld bc,CRTCDA	; Write incrementing value
 		out (c),d
 
-        inc d
+        inc d			; inc the value being written
+
+; Delay loop		
 		ld b,#8
 T01_L02
-		NOP				; Delay
+		NOP
 		djnz T01_L02
 
+; Test for end of main loop
 		pop bc
 		dec bc
 		jp nz,T01_L01
 
-; Loop at a fast seed, i.e. no delay 20.25 usec
-			
+
+
+T02
+; Loop 500 times with at a fast seed, deplay loop gives 55.75usecs	
+;
         ld d,#00
-		ld e,#02
 		ld bc,500
-T01_L03
+
+T02_L01
 		push bc
+		ld e,#02
 
 		ld bc,CRTCIA
 		out (c),e
@@ -67,15 +74,14 @@ T01_L03
 		ld bc,CRTCDA
 		out (c),d
 
-		inc d
-;		ld b,#2
-;T01_L04
-;		NOP				; Delay
-;		djnz T01_L04
+		inc d			; inc the value being written
 
 		pop bc
 		dec bc
-		jp nz,T01_L03
+		jp nz,T02_L01
+
+
+
 
 		; repeat
         jp T01_L01

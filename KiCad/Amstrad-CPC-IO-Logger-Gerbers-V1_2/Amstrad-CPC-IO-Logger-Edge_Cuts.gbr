@@ -1,0 +1,23 @@
+G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,9.0.6*
+G04 #@! TF.CreationDate,2026-04-17T18:14:28+01:00*
+G04 #@! TF.ProjectId,Amstrad-CPC-IO-Logger,416d7374-7261-4642-9d43-50432d494f2d,V1.1*
+G04 #@! TF.SameCoordinates,Original*
+G04 #@! TF.FileFunction,Profile,NP*
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 9.0.6) date 2026-04-17 18:14:28*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+G04 #@! TA.AperFunction,Profile*
+%ADD10C,0.050000*%
+G04 #@! TD*
+G04 APERTURE END LIST*
+D10*
+X93624400Y-61747400D02*
+X182676800Y-61747400D01*
+X182676800Y-136194800D01*
+X93624400Y-136194800D01*
+X93624400Y-61747400D01*
+M02*
