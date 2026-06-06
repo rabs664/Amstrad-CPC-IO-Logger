@@ -1,6 +1,6 @@
 # Amstrad-CPC-IO-Logger
 
-![Amstrad CPC IO Logger Readme](https://github.com/user-attachments/assets/658f774d-5dc8-4aa4-af35-21187db9bf84)
+![Amstrad CPC IO Logger Readme](https://github.com/user-attachments/assets/d6ec8927-3c3b-42e0-b8b1-1eefc8fb1832)
 
 >[!CAUTION]
 >USE AT YOUR OWN RISK.
@@ -94,9 +94,17 @@ Below is the output from the sample BASIC program in the repository.
 
 ![Example BASIC program](https://github.com/user-attachments/assets/37655f0b-d956-46c1-a093-968a9b0b6320)
 
+## IO Address
+By default the IO address used in the repository is set to F9E0.
+
+<img width="400" height="500" alt="20260606_100528" src="https://github.com/user-attachments/assets/96c53b9f-36d6-4a5b-8d9d-e779b871f97b" />
+
+
 ## Project History
 ### 17 April 2026 
 CRTC Register Logging
+### 06 June 2026
+Removed V1.1 of the PCB
 
 ## Acknowledgements
 - **NoRecess** for the inspiration and support on this project.
