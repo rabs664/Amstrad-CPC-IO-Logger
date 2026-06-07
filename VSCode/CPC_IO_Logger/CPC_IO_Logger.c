@@ -43,7 +43,7 @@ bool debugCRTCDataTimingV2 = true;     //When a CRTC Data Write is detected prin
 #define TOGGLE_GA_RMR               55  //Code to print GA RMR Writes
 #define TOGGLE_GA_MMR               56  //Code to print GA MMR Writes
 #define TOGGLE_GA_RMR2              57  //Code to print GA RMR2 Writes
-#define TOGGLE_IOLOG                58  //Code to print Error Messages
+#define TOGGLE_IOLOG                58  //Code to print Error Messages, No longer used
 #define TOGGLE_CRTC_DATA_TIMING_V1  59  //Code to print Timing Messages
 #define TOGGLE_CRTC_DATA_TIMING_V2  60  //Code to print Timing Messages
 
@@ -89,6 +89,7 @@ R0	R1	R2	R3	R4	R5	R6	R7	R8	R9	R10	R11	R12	R13	R14	R15	LR	P0	P1	P2	P3	P4	P5	P6	P7
 
 
 // Error Codes
+#define NO_ERROR 0                         //When no error has occurred
 #define INVALID_CRTC_REGISTER 1             //When the selected CRTC Register > 15
 #define INVALID_GA_PEN 2                    //When the selected Pen is > 16
 #define SERIAL_NOT_READY 3                  //When the serial connection is not ready to send data
@@ -259,6 +260,10 @@ int main()
 
                         if(!cdc_write(buf)) {
                                   registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     }
 
@@ -278,6 +283,10 @@ int main()
 
                         if(!cdc_write(buf)) {
                                 registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     }
 
@@ -303,6 +312,10 @@ int main()
 
                         if(!cdc_write(buf)) {
                             registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
 
                     } else if(debugCRTCDataTimingV2) {
@@ -314,6 +327,10 @@ int main()
 
                         if(!cdc_write(buf)) {
                             registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     }
 
@@ -329,6 +346,10 @@ int main()
 
                             if(!cdc_write(buf)) {
                                 registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                            } else {
+                                if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                    registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                                }
                             }
                         }
 
@@ -345,7 +366,12 @@ int main()
                                 if(!cdc_write(hdr)) {
                                     registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
                                     break;
+                                } else {
+                                    if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                        registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                                    }
                                 }
+                            }
 
                                 char buf[3] = {0};
                                 for (int i = 0; i <= LAST_REGISTER_INDEX; i++) {
@@ -354,6 +380,10 @@ int main()
                                     if(!cdc_write(buf)) {
                                         registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
                                         break;
+                                    } else {
+                                        if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                            registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                                        }
                                     }
                                 }       
                                     
@@ -361,8 +391,11 @@ int main()
                                 if(!cdc_write(crl)) {
                                     registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
                                     break;
+                                } else {
+                                    if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                        registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                                    }
                                 }
-                            }
                             break;
 
                         case TOGGLE_PRINT_CRTC_INDEX:
@@ -412,6 +445,10 @@ int main()
 
                         if(!cdc_write(buf)) {
                             registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     } 
                 
@@ -423,6 +460,10 @@ int main()
   
                         if(!cdc_write(buf)) {
                             registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     }
 
@@ -441,13 +482,15 @@ int main()
 
                         if(!cdc_write(buf)) {
                             registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     }
   
                     registerBuffer[selectedGAPen + FIRST_GA_PEN_INDEX] = get_GA_COLOUR(D0_D7);
                         
-
-
                 } else if (A8_A15 == GATE_ARRAY_PORT && (get_GA_FUNCTION_SELECT(D0_D7) == GA_SELECT_RMR_FUNCTION)) {
 
                     if(!is_RMR2(D0_D7)) {
@@ -457,7 +500,12 @@ int main()
 
                             if(!cdc_write(buf)) {
                                 registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                            } else {
+                                if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                    registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                                }
                             }
+
                         }
                         registerBuffer[GA_RMR_INDEX] = D0_D7;
 
@@ -468,6 +516,10 @@ int main()
 
                             if(!cdc_write(buf)) {
                                 registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                            } else {
+                                if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                    registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                                }
                             }
                         }
                         registerBuffer[GA_RMR2_INDEX] = D0_D7;
@@ -481,6 +533,10 @@ int main()
 
                         if(!cdc_write(buf)) {
                             registerBuffer[ERROR_INDEX] = SERIAL_NOT_READY;
+                        } else {
+                            if(registerBuffer[ERROR_INDEX] == SERIAL_NOT_READY) {
+                                registerBuffer[ERROR_INDEX] = NO_ERROR; // Clear error flag if the message was sent successfully
+                            }
                         }
                     }
                     registerBuffer[GA_MMR_INDEX] = D0_D7;
