@@ -43,7 +43,7 @@ bool debugCRTCDataTimingV2 = true;     //When a CRTC Data Write is detected prin
 #define TOGGLE_GA_RMR               55  //Code to print GA RMR Writes
 #define TOGGLE_GA_MMR               56  //Code to print GA MMR Writes
 #define TOGGLE_GA_RMR2              57  //Code to print GA RMR2 Writes
-#define TOGGLE_IOLOG                58  //Code to print Error Messages, No longer used
+#define TOGGLE_IOLOG                58  //Code to print IO Log Commands from the CPC
 #define TOGGLE_CRTC_DATA_TIMING_V1  59  //Code to print Timing Messages
 #define TOGGLE_CRTC_DATA_TIMING_V2  60  //Code to print Timing Messages
 
