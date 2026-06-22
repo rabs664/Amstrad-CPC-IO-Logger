@@ -73,7 +73,6 @@ Debug commands.
 | TOGGLE_GA_RMR              | 55  |
 | TOGGLE_GA_MMR              | 56  |
 | TOGGLE_GA_RMR2             | 57  |
-| TOGGLE_IOLOG               | 58  |
 | TOGGLE_CRTC_DATA_TIMING_V1 | 59  |
 | TOGGLE_CRTC_DATA_TIMING_V2 | 60  |
 
