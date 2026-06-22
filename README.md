@@ -63,18 +63,19 @@ Debug output to a console (i.e. putty) can be enabled within the code and contro
 
 Debug commands.
 
-| Debug                      |Value|
-| ---------------------------|-----|
-| PRINT_REG_BUFFER           | 50  |
-| TOGGLE_PRINT_CRTC_INDEX    | 51  |
-| TOGGLE_PRINT_CRTC_DATA     | 52  |
-| TOGGLE_GA_PEN              | 53  |
-| TOGGLE_GA_COL              | 54  |
-| TOGGLE_GA_RMR              | 55  |
-| TOGGLE_GA_MMR              | 56  |
-| TOGGLE_GA_RMR2             | 57  |
-| TOGGLE_CRTC_DATA_TIMING_V1 | 59  |
-| TOGGLE_CRTC_DATA_TIMING_V2 | 60  |
+| Debug                      |Value| Log Header |
+| ---------------------------|-----|------------|
+| PRINT_REG_BUFFER           | 50  | REGBF      |
+| TOGGLE_PRINT_CRTC_INDEX    | 51  | CRTCI      |
+| TOGGLE_PRINT_CRTC_DATA     | 52  | CRTCD      |
+| TOGGLE_GA_PEN              | 53  | GAPEN      |
+| TOGGLE_GA_COL              | 54  | GACOL      |
+| TOGGLE_GA_RMR              | 55  | GARMR      |
+| TOGGLE_GA_MMR              | 56  | GAMMR      |
+| TOGGLE_GA_RMR2             | 57  | GARM2      |
+| TOGGLE_IO_LOG              | 58  | IOLOG      |
+| TOGGLE_CRTC_DATA_TIMING_V1 | 59  |            |
+| TOGGLE_CRTC_DATA_TIMING_V2 | 60  |            |
 
 
 ### CRTC Register Logging
@@ -85,6 +86,9 @@ When enabled the time stamped writes to the CRTC Registered will be loggged over
 The "lag-o-meter" is a value from 1 to 10 indicating the decode lag behind the capture. A value of 1 is no lag and a value of 10 implies the decode has been overrun and data may be lost.
 
 ![CRTC Register Logging](https://github.com/user-attachments/assets/dfb82be3-aaa2-4898-9fa2-2843bad4b6e2)
+
+### Debug Command Logging
+The logging of debug Commands sent to the CPC IO Logger from the CPC using OUT &F9E0 can be enabled using OUT &F9E0,58.
 
 ## Testing
 Only first pass testing has so far been completed on an Amstrad CPC 6128 but the concept is working. More comprehensive testing, including error conditions is still to be completed.
