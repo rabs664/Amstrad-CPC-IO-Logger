@@ -107,10 +107,10 @@ By default the IO address used in the repository is set to F9E0. The following I
 - F8F0
 - F9E0
 - F9F0
-- FAE0
-- FAF0
-- FBE0
-- FBF0
+
+FA and FB should not be used as these are also used by the FDC, see ![Issue 3](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/3).
+
+But see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2)
 
 The #define CPC_IO_CAPTURE      0xF9 in IOAddr.h also needs to be changed, to match the selected high byte address value.
 
