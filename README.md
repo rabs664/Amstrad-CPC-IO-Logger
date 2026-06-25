@@ -112,7 +112,7 @@ By default the IO address used in the repository is set to F9E0. The following I
 - FBE0
 - FBF0
 
-The #define CPC_IO_CAPTURE      0xF9 in IOAddr.h also needs to be changed, to match.
+The #define CPC_IO_CAPTURE      0xF9 in IOAddr.h also needs to be changed, to match the selected high byte address value.
 
 <img width="400" height="500" alt="20260606_100528" src="https://github.com/user-attachments/assets/96c53b9f-36d6-4a5b-8d9d-e779b871f97b" />
 
