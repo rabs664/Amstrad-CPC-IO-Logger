@@ -56,8 +56,8 @@ The Register Buffer is a sequential list of register values written to the CRTC 
 
 Please refer to the [CPC Wiki CRTC page](https://www.cpcwiki.eu/index.php/CRTC) and [CPC Wiki Gate Array page](https://www.cpcwiki.eu/index.php/Gate_Array) for more information.
 
-### INKR Values
-The INKR values returned do not include the 3 bit command value 010. See INKR Values in the Info folder. 
+### Pen Colour Values
+The Pen Colour values returned do not include the 3 bit command value 010. See INKR Values in the Info folder. 
 
 ### Debug
 Debug output to a console (i.e. putty) can be enabled within the code and controlled from the Amstrad CPC with an OUT instruction between 50 and 57 (i.e. OUT &F9E0,50 will print the contents of the Register Buffer to the console). See the main code for more information.
