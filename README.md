@@ -101,7 +101,16 @@ Below is the output from the sample BASIC program in the repository.
 ![Example BASIC program](https://github.com/user-attachments/assets/37655f0b-d956-46c1-a093-968a9b0b6320)
 
 ## IO Address
-By default the IO address used in the repository is set to F9E0.
+By default the IO address used in the repository is set to F9E0. The following IO Address can be selected
+
+- F8E0
+- F8F0
+- F9E0
+- F9F0
+- FAE0
+- FAF0
+- FBE0
+- FBF0
 
 <img width="400" height="500" alt="20260606_100528" src="https://github.com/user-attachments/assets/96c53b9f-36d6-4a5b-8d9d-e779b871f97b" />
 
