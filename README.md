@@ -118,6 +118,8 @@ The #define CPC_IO_CAPTURE      0xF9 in IOAddr.h also needs to be changed, to ma
 
 
 ## Project History
+### 26 June 2026
+Found a small problem with the IO Address Selection when sending Debug Commands to the Pico. see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2) V2.0 in progress 
 ### 17 April 2026 
 CRTC Register Logging
 ### 06 June 2026
