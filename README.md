@@ -56,6 +56,9 @@ The Register Buffer is a sequential list of register values written to the CRTC 
 
 Please refer to the [CPC Wiki CRTC page](https://www.cpcwiki.eu/index.php/CRTC) and [CPC Wiki Gate Array page](https://www.cpcwiki.eu/index.php/Gate_Array) for more information.
 
+### Pen Colour Values
+The Pen Colour values returned do not include the 3 bit command value 010. See INKR Values in the Info folder. 
+
 ### Debug
 Debug output to a console (i.e. putty) can be enabled within the code and controlled from the Amstrad CPC with an OUT instruction between 50 and 57 (i.e. OUT &F9E0,50 will print the contents of the Register Buffer to the console). See the main code for more information.
 
@@ -98,12 +101,25 @@ Below is the output from the sample BASIC program in the repository.
 ![Example BASIC program](https://github.com/user-attachments/assets/37655f0b-d956-46c1-a093-968a9b0b6320)
 
 ## IO Address
-By default the IO address used in the repository is set to F9E0.
+By default the IO address used in the repository is set to F9E0. The following IO Address can be selected
+
+- F8E0
+- F8F0
+- F9E0
+- F9F0
+
+FA and FB should not be used as these are also used by the FDC, see ![Issue 3](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/3).
+
+But see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2)
+
+The #define CPC_IO_CAPTURE      0xF9 in IOAddr.h also needs to be changed, to match the selected high byte address value.
 
 <img width="400" height="500" alt="20260606_100528" src="https://github.com/user-attachments/assets/96c53b9f-36d6-4a5b-8d9d-e779b871f97b" />
 
 
 ## Project History
+### 26 June 2026
+Found a small problem with the IO Address Selection when sending Debug Commands to the Pico. see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2) V2.0 in progress 
 ### 17 April 2026 
 CRTC Register Logging
 ### 06 June 2026
