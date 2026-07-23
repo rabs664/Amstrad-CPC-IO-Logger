@@ -6,7 +6,7 @@
     *  This file contains the definitions to extract the captured data from the GPIO pin raw data.
     * 
     *  The raw data is captured in the format
-    *  A0_A1 | A8_A15 | D0_D7
+    *  A0_A1 | A8_A15 | D0_D7 | DBGC
     */
     #include "hardware/pio.h"
 
@@ -23,4 +23,8 @@
 
     uint32_t get_D0_D7(uint32_t rawData) {
         return (rawData & D0_D7_MASK) >> D0_D7_SHIFT;
-    }  
+    }
+    
+    uint32_t get_DBGC(uint32_t rawData) {
+        return (rawData & DBGC_MASK) >> DBGC_SHIFT;
+    }

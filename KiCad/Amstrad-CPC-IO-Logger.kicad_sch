@@ -7,8 +7,8 @@
 	(title_block
 		(title "RABS Amstrad CPC IO Data Logger")
 		(date "2026-02-15")
-		(rev "V1.1")
-		(comment 1 "V1.1 Changed GPIO to make D0-D7 consecutive")
+		(rev "V2.0")
+		(comment 1 "V2.0 Change GPIO to add DBGC for explicit selection of Debug Commands")
 	)
 	(lib_symbols
 		(symbol "74xx:74HCT00"
@@ -3007,322 +3007,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector_Generic:Conn_02x04_Odd_Even"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "J"
-				(at 1.27 5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_02x04_Odd_Even"
-				(at 1.27 -7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_2x??_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Conn_02x04_Odd_Even_1_1"
-				(rectangle
-					(start -1.27 3.81)
-					(end 3.81 -6.35)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -1.27 2.667)
-					(end 0 2.413)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 -4.953)
-					(end 0 -5.207)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 2.667)
-					(end 2.54 2.413)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 0.127)
-					(end 2.54 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 -2.413)
-					(end 2.54 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 -4.953)
-					(end 2.54 -5.207)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -5.08 2.54 0)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 3.81)
-					(name "Pin_3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 3.81)
-					(name "Pin_5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -5.08 0)
-					(length 3.81)
-					(name "Pin_7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 2.54 180)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 3.81)
-					(name "Pin_4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -2.54 180)
-					(length 3.81)
-					(name "Pin_6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -5.08 180)
-					(length 3.81)
-					(name "Pin_8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector_Generic:Conn_02x25_Odd_Even"
 			(pin_names
 				(offset 1.016)
@@ -6280,7 +5964,7 @@
 		)
 		(uuid "4b2892f1-2ba4-47df-9eed-7689aadb39bf")
 	)
-	(text "CSRD provides a single Chip Select Read active \nlow signal (i.e. combining IO Address, IORQ and RD)"
+	(text "(~{CSRD}) provides a single Chip Select Read active \nlow signal (i.e. combining IO Address, IORQ and RD)"
 		(exclude_from_sim no)
 		(at 273.812 178.054 0)
 		(effects
@@ -6300,7 +5984,7 @@
 		)
 		(uuid "68e3122b-0ebb-430b-8f4b-685014f47434")
 	)
-	(text "IORQ and WR are combined to provide \na single active low signal."
+	(text "(~{IORQ}) and (~{WR}) are combined to provide \na single active low signal."
 		(exclude_from_sim no)
 		(at 282.448 218.186 0)
 		(effects
@@ -6331,6 +6015,16 @@
 			)
 		)
 		(uuid "d44ea79e-7d9f-4cf5-91c0-0198ad8dcb63")
+	)
+	(text "(~{DBGC}) provides a signal for the explict 16-Bit IO Address \nassociated with Debug Commands"
+		(exclude_from_sim no)
+		(at 268.224 146.05 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "e8670cd7-9218-4c40-a52a-d2d4fe2c3c57")
 	)
 	(text_box "Amstrad CPC MX4 Connector\n\nFemale sockets on connector have pins reversed by orientation on the board so keep the same logical connections i.e. Pin 2 is Pin 49 and pin 3 is pin 48"
 		(exclude_from_sim no)
@@ -6394,7 +6088,7 @@
 		)
 		(uuid "3f75251c-6425-43e1-bb28-49fafea0de6f")
 	)
-	(text_box "PICO\n\nOne PIO will wait on ~{IORW} and when triggered place data in RX FIFO. DMA will move this into memory of CPU to decode and place in memory associated with IO Address.\n\nOne PIO will wait on ~{CSRD} and when triggered place data in TX FIFO. DMA will provide data into PIO. Not figured this bit out yet fully. "
+	(text_box "PICO\n\nOne PIO will wait on ~{IORW} and when triggered place data in RX FIFO. DMA will move this into memory of CPU to decode and place in memory associated with IO Address. \n\nOne PIO will wait on ~{CSRD} and when triggered place data in TX FIFO. DMA will provide data into PIO.\n\n(~{DBGC}) will be stored in the Capture Buffer and used during decode to decide if the OUT command is an explicit Debug Command for the Pico.\n"
 		(exclude_from_sim no)
 		(at 454.66 15.24 0)
 		(size 123.19 107.95)
@@ -6414,7 +6108,7 @@
 		)
 		(uuid "4bdba54b-e7db-4fbe-8239-e31e04b28daf")
 	)
-	(text_box "CONTROL (CTRL)\n\nThis transceiver buffers the control signals associated with IO Reads and Writes from the CPC.\n\nChip Select Read (~{CSRD}) is active low when CPC is reading the Pico simulated IO port i.e. F8E0. The Pico will use this as a trigger to place the next data byte on the data lines and change direction of the Data Transciever.\n\nA0 and A1 have also been provided as an optional address selection and may allocate these to return the CRTC, GA or PIO data but not decided yet.\n\n~{IOWR} active is low when the CPC is executing any IO Write, which will include the CRTC, GA or PIO. The PICO will use this as a trigger to log the data.\n\nCTRL Chip Enable (~{CTRL_CE}) will be pulled low by the PICO when powered."
+	(text_box "CONTROL (CTRL)\n\nThis transceiver buffers the control signals associated with IO Reads and Writes from the CPC.\n\nChip Select Read (~{CSRD}) is active low when the CPC is reading the Pico IO port i.e. F9E0. The Pico will use this as a trigger to place the next data byte on the data lines and change direction of the Data Transciever.\n\nA0 and A1 have also been provided as an optional address selection and may allocate these to return the CRTC, GA or PIO data but not decided yet.\n\n~{IOWR} active is low when the CPC is executing any IO Write, which will include the CRTC, GA or PIO. The Pico will use this as a trigger to capture the data.\n\nCTRL Chip Enable (~{CTRL_CE}) will be pulled low by the Pico when powered.\n\n(~{DBGC}) will be pulled low when a Debug Command (DBGC) is writen to the Pico IO Port i.e. F9E0. This then ensures that only an explicit 16-bit address OUT instruction will processed for Debug Commands."
 		(exclude_from_sim no)
 		(at 309.88 24.13 0)
 		(size 140.97 93.98)
@@ -6434,7 +6128,7 @@
 		)
 		(uuid "78841e28-a9c4-4ad5-89aa-504c7dd4f682")
 	)
-	(text_box "Address High Byte (ADHB)\n\nThis transceiver buffers the high byte of the IO Write from the CPC. Only the High Byte of the Address is used on the Amstrad CPC to select the CRTC, GA and PIO.\n\nNote on the Amstrad CPC selection of the CRTC, GA and PIO is made with a single active low address line (i.e. B14 low selects the CRTC)\n\nAddress High Byte Chip Enable (~{ADHB_CE}) will be pulled low by the PICO when powered."
+	(text_box "Address High Byte (ADHB)\n\nThis transceiver buffers the high byte of the IO Write from the CPC. Only the High Byte of the Address is used on the Amstrad CPC to select the CRTC, GA and PIO.\n\nNote on the Amstrad CPC selection of the CRTC, GA and PIO is made with a single active low address line (i.e. B14 low selects the CRTC)\n\nAddress High Byte Chip Enable (~{ADHB_CE}) will be pulled low by the Pico when powered."
 		(exclude_from_sim no)
 		(at 309.88 121.92 0)
 		(size 140.97 147.32)
@@ -6454,7 +6148,7 @@
 		)
 		(uuid "83a69226-a17d-44c1-b480-2e4724997dfa")
 	)
-	(text_box "DATA\n\nThis transceiver buffers the high byte of the Data lines to and from the CPC. \n\nThe direction of data will be controlled by the Pico using Data Chip Enable (DATA_AB). By default this will be A to B and only on a IO Port Read will the Pico change this to B to A.\n\nData Chip Enable (~{DATA_CE}) will be pulled low by the PICO when powered."
+	(text_box "DATA\n\nThis transceiver buffers the high byte of the Data lines to and from the CPC. \n\nThe direction of data will be controlled by the Pico using Data Chip Enable (DATA_AB). By default this will be A to B and only on a IO Port Read will the Pico change this to B to A.\n\nData Chip Enable (~{DATA_CE}) will be pulled low by the Pico when powered."
 		(exclude_from_sim no)
 		(at 309.88 273.05 0)
 		(size 140.97 116.84)
@@ -6535,28 +6229,22 @@
 		(uuid "fc9267ee-d758-4685-984b-ab4b2df5a077")
 	)
 	(junction
+		(at 227.33 212.09)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "04acef0e-1dc3-430d-adc6-f14be036fed0")
+	)
+	(junction
 		(at 228.6 46.99)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "07762794-f1b3-4dfd-961b-d82ff9ac7f1c")
 	)
 	(junction
-		(at 227.33 217.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "107326f6-ca97-4b92-beca-24e3bff7b3b0")
-	)
-	(junction
 		(at 138.43 288.29)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1b8855e7-8f45-402d-ab9d-26a88eb96404")
-	)
-	(junction
-		(at 227.33 214.63)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2378fd10-b843-472b-a9a4-b1a65725e662")
 	)
 	(junction
 		(at 529.59 55.88)
@@ -6569,12 +6257,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "37f590e1-13ff-4f78-8c06-671b44a4a437")
-	)
-	(junction
-		(at 227.33 212.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "407f21d9-b95b-41dd-a17c-7b4c2d836b9d")
 	)
 	(junction
 		(at 267.97 289.56)
@@ -6611,6 +6293,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "73434c23-ede2-4bed-bc95-8aa64c9eadf9")
+	)
+	(junction
+		(at 251.46 166.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7cf73e0c-dae7-4c20-b7af-ad07ee363c16")
 	)
 	(junction
 		(at 251.46 74.93)
@@ -6659,7 +6347,7 @@
 		(uuid "00db92a2-b485-4379-b3ba-96b5406681ef")
 	)
 	(no_connect
-		(at 363.22 83.82)
+		(at 361.95 90.17)
 		(uuid "11d62d8d-2748-4f77-b171-7a8b2b956be0")
 	)
 	(no_connect
@@ -6687,7 +6375,7 @@
 		(uuid "2998a2a6-0436-4c84-bd1f-d9367c88e043")
 	)
 	(no_connect
-		(at 388.62 88.9)
+		(at 387.35 95.25)
 		(uuid "2deeab74-9cfe-4eef-bbde-7581f7e5f8bf")
 	)
 	(no_connect
@@ -6711,16 +6399,12 @@
 		(uuid "517ec1d6-9c0e-441e-918f-e38e889ec5b5")
 	)
 	(no_connect
-		(at 388.62 83.82)
+		(at 387.35 90.17)
 		(uuid "53a2635f-67be-42be-8d7d-2f072d548f6a")
 	)
 	(no_connect
 		(at 283.21 302.26)
 		(uuid "53f92f0a-3eda-4096-845b-38c85d49f028")
-	)
-	(no_connect
-		(at 519.43 66.04)
-		(uuid "545219d6-7689-4e86-96e2-67d01ed0e4b2")
 	)
 	(no_connect
 		(at 217.17 107.95)
@@ -6751,20 +6435,20 @@
 		(uuid "7ca78b84-7a7b-445d-9d1d-2c5f3cc80036")
 	)
 	(no_connect
-		(at 388.62 81.28)
-		(uuid "7f40a69c-3cc1-426f-93f4-52017dec6d56")
-	)
-	(no_connect
-		(at 363.22 88.9)
+		(at 361.95 95.25)
 		(uuid "8911541c-d05b-4378-8f8d-221faf0c33fe")
 	)
 	(no_connect
-		(at 388.62 86.36)
+		(at 387.35 92.71)
 		(uuid "8a4aeb71-c8d0-41c7-b1d7-4b375269c922")
 	)
 	(no_connect
 		(at 203.2 227.33)
 		(uuid "8e316c15-d3a6-430c-b834-db3f900d2cdf")
+	)
+	(no_connect
+		(at 203.2 217.17)
+		(uuid "91100af9-508f-47fd-b993-a844fa444596")
 	)
 	(no_connect
 		(at 217.17 59.69)
@@ -6811,10 +6495,6 @@
 		(uuid "b76a3b3a-96fe-400d-ade1-b74689c01857")
 	)
 	(no_connect
-		(at 363.22 81.28)
-		(uuid "b7d191a2-7aae-4044-9609-f32e76cfdfae")
-	)
-	(no_connect
 		(at 204.47 57.15)
 		(uuid "bdfc692f-efef-4285-958a-b00d96c0f0b8")
 	)
@@ -6827,7 +6507,11 @@
 		(uuid "cca583fe-66dd-461d-9442-07d1757596bf")
 	)
 	(no_connect
-		(at 363.22 86.36)
+		(at 203.2 219.71)
+		(uuid "d123109d-8495-495c-a8e6-9feb6d211e84")
+	)
+	(no_connect
+		(at 361.95 92.71)
 		(uuid "e57de047-34a5-4280-a633-9301fb3e7645")
 	)
 	(no_connect
@@ -6845,16 +6529,6 @@
 	(no_connect
 		(at 204.47 52.07)
 		(uuid "ee02a641-6712-49b6-b410-6f4d7d37df3d")
-	)
-	(wire
-		(pts
-			(xy 227.33 217.17) (xy 227.33 219.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "01705d70-20e2-4aa3-a20b-e6bd9a822813")
 	)
 	(wire
 		(pts
@@ -7018,6 +6692,16 @@
 	)
 	(wire
 		(pts
+			(xy 251.46 166.37) (xy 251.46 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1633feec-9ba8-46e9-98c7-7ba64ae7d996")
+	)
+	(wire
+		(pts
 			(xy 96.52 304.8) (xy 118.11 304.8)
 		)
 		(stroke
@@ -7038,7 +6722,7 @@
 	)
 	(wire
 		(pts
-			(xy 375.92 55.88) (xy 375.92 63.5)
+			(xy 374.65 62.23) (xy 374.65 69.85)
 		)
 		(stroke
 			(width 0)
@@ -7208,7 +6892,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 78.74) (xy 363.22 78.74)
+			(xy 347.98 85.09) (xy 361.95 85.09)
 		)
 		(stroke
 			(width 0)
@@ -7328,13 +7012,13 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 219.71) (xy 214.63 219.71)
+			(xy 251.46 166.37) (xy 252.73 166.37)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3fc82346-03bb-45b2-b1f3-696cdab89cf2")
+		(uuid "3e2ec0f0-bb6f-40d9-ab2e-77d76ba7bfc0")
 	)
 	(wire
 		(pts
@@ -7428,6 +7112,16 @@
 	)
 	(wire
 		(pts
+			(xy 387.35 87.63) (xy 401.32 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4504805a-1cdb-463c-9747-4dedd6ea70cc")
+	)
+	(wire
+		(pts
 			(xy 468.63 93.98) (xy 483.87 93.98)
 		)
 		(stroke
@@ -7478,7 +7172,7 @@
 	)
 	(wire
 		(pts
-			(xy 388.62 71.12) (xy 402.59 71.12)
+			(xy 387.35 77.47) (xy 401.32 77.47)
 		)
 		(stroke
 			(width 0)
@@ -7488,17 +7182,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 217.17) (xy 214.63 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4ddb3832-5743-456d-b106-05a6bc59a1b0")
-	)
-	(wire
-		(pts
-			(xy 388.62 78.74) (xy 402.59 78.74)
+			(xy 387.35 85.09) (xy 401.32 85.09)
 		)
 		(stroke
 			(width 0)
@@ -7508,7 +7192,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 76.2) (xy 363.22 76.2)
+			(xy 347.98 82.55) (xy 361.95 82.55)
 		)
 		(stroke
 			(width 0)
@@ -7585,6 +7269,16 @@
 			(type default)
 		)
 		(uuid "5991879c-24b4-4cd2-86cd-d90cad64e2ab")
+	)
+	(wire
+		(pts
+			(xy 227.33 212.09) (xy 227.33 214.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b485556-9f8e-4a7e-982f-babe19fc4b03")
 	)
 	(wire
 		(pts
@@ -7688,7 +7382,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 73.66) (xy 363.22 73.66)
+			(xy 347.98 80.01) (xy 361.95 80.01)
 		)
 		(stroke
 			(width 0)
@@ -7745,6 +7439,16 @@
 			(type default)
 		)
 		(uuid "685fc675-e50c-48ac-adaf-aa0493923cac")
+	)
+	(wire
+		(pts
+			(xy 227.33 182.88) (xy 227.33 212.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ba38188-aa31-450e-b64a-b4d922eb9ecc")
 	)
 	(wire
 		(pts
@@ -7918,7 +7622,7 @@
 	)
 	(wire
 		(pts
-			(xy 248.92 166.37) (xy 252.73 166.37)
+			(xy 248.92 166.37) (xy 251.46 166.37)
 		)
 		(stroke
 			(width 0)
@@ -8088,7 +7792,7 @@
 	)
 	(wire
 		(pts
-			(xy 388.62 73.66) (xy 402.59 73.66)
+			(xy 387.35 80.01) (xy 401.32 80.01)
 		)
 		(stroke
 			(width 0)
@@ -8138,7 +7842,7 @@
 	)
 	(wire
 		(pts
-			(xy 375.92 104.14) (xy 375.92 109.22)
+			(xy 374.65 110.49) (xy 374.65 115.57)
 		)
 		(stroke
 			(width 0)
@@ -8155,6 +7859,26 @@
 			(type default)
 		)
 		(uuid "96f95859-8593-4152-b1b9-c28e82896756")
+	)
+	(wire
+		(pts
+			(xy 519.43 66.04) (xy 533.4 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98b18aca-c638-443f-b68f-66fbe2bd0954")
+	)
+	(wire
+		(pts
+			(xy 251.46 152.4) (xy 274.32 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9bbf1b44-4166-4a57-84a4-86ee0bdd8fe6")
 	)
 	(wire
 		(pts
@@ -8205,6 +7929,16 @@
 			(type default)
 		)
 		(uuid "a2772495-9ada-4a1c-a929-71b10613bf6f")
+	)
+	(wire
+		(pts
+			(xy 347.98 87.63) (xy 361.95 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4eb5958-c4d3-4e13-9bc9-301ecce6c410")
 	)
 	(wire
 		(pts
@@ -8478,7 +8212,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 96.52) (xy 363.22 96.52)
+			(xy 347.98 102.87) (xy 361.95 102.87)
 		)
 		(stroke
 			(width 0)
@@ -8505,16 +8239,6 @@
 			(type default)
 		)
 		(uuid "c6c3d075-5647-40c6-9b58-5818604cc433")
-	)
-	(wire
-		(pts
-			(xy 227.33 182.88) (xy 227.33 212.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c865eee6-76e9-43bd-bc1d-08a642b6048b")
 	)
 	(wire
 		(pts
@@ -8568,7 +8292,7 @@
 	)
 	(wire
 		(pts
-			(xy 388.62 76.2) (xy 402.59 76.2)
+			(xy 387.35 82.55) (xy 401.32 82.55)
 		)
 		(stroke
 			(width 0)
@@ -8658,16 +8382,6 @@
 	)
 	(wire
 		(pts
-			(xy 227.33 214.63) (xy 227.33 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dadadece-c7af-4453-9f5e-58bf8bb23903")
-	)
-	(wire
-		(pts
 			(xy 171.45 177.8) (xy 177.8 177.8)
 		)
 		(stroke
@@ -8675,16 +8389,6 @@
 			(type default)
 		)
 		(uuid "db0439ef-f892-4728-8290-5d0ad8bd698e")
-	)
-	(wire
-		(pts
-			(xy 227.33 212.09) (xy 227.33 214.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "db279aa1-c64b-41a6-b081-1fac2a324d73")
 	)
 	(wire
 		(pts
@@ -8698,7 +8402,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 93.98) (xy 363.22 93.98)
+			(xy 347.98 100.33) (xy 361.95 100.33)
 		)
 		(stroke
 			(width 0)
@@ -8778,7 +8482,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 71.12) (xy 363.22 71.12)
+			(xy 347.98 77.47) (xy 361.95 77.47)
 		)
 		(stroke
 			(width 0)
@@ -11293,7 +10997,7 @@
 		)
 	)
 	(label "P_A1"
-		(at 402.59 76.2 0)
+		(at 401.32 82.55 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11301,6 +11005,16 @@
 			(justify left bottom)
 		)
 		(uuid "02e6a313-454b-4e73-a775-559e9833025c")
+	)
+	(label "~{CTRL_CE}"
+		(at 533.4 83.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "031a2811-75cd-4587-9f9f-ff20cf33c84e")
 	)
 	(label "P_A11"
 		(at 468.63 60.96 0)
@@ -11341,6 +11055,16 @@
 			(justify left bottom)
 		)
 		(uuid "0b58ce3d-c0f3-445b-9c27-28075370e49d")
+	)
+	(label "~{P_DBGC}"
+		(at 401.32 87.63 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0c70bf40-136e-4980-a35f-dc6ef5e50c55")
 	)
 	(label "A14"
 		(at 180.34 105.41 0)
@@ -11393,7 +11117,7 @@
 		(uuid "111b4930-5b72-4299-a403-7548a4623636")
 	)
 	(label "GND"
-		(at 375.92 109.22 0)
+		(at 374.65 115.57 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11401,6 +11125,16 @@
 			(justify left bottom)
 		)
 		(uuid "12313058-a238-4f47-af7e-ddce79bb221c")
+	)
+	(label "~{ADHB_CE}"
+		(at 533.4 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1320a7bf-9ce7-4c2f-8331-277cf325c1cd")
 	)
 	(label "A7"
 		(at 238.76 95.25 0)
@@ -11463,7 +11197,7 @@
 		(uuid "1b9702d0-3444-4ffd-a033-31dd981afe9d")
 	)
 	(label "~{CTRL_CE}"
-		(at 349.25 96.52 0)
+		(at 347.98 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11483,7 +11217,7 @@
 		(uuid "20d58863-ff69-46e8-a8ed-17e5a4293950")
 	)
 	(label "~{P_IOWR}"
-		(at 402.59 78.74 0)
+		(at 401.32 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11503,7 +11237,7 @@
 		(uuid "2163b403-8492-41ab-bb4f-9ed54f91621d")
 	)
 	(label "~{IOWR}"
-		(at 349.25 78.74 0)
+		(at 347.98 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11632,35 +11366,15 @@
 		)
 		(uuid "37f51bb7-7de6-4274-a92b-0a06cac2123f")
 	)
-	(label "FB"
-		(at 208.28 219.71 0)
+	(label "DATA_AB"
+		(at 533.4 73.66 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "38af87f2-0c56-4ce2-ad3c-e4b96ebab45c")
-	)
-	(label "~{ADHB_CE}"
-		(at 533.4 83.82 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3b3aef4f-da10-4838-9459-ee1a74c8de38")
-	)
-	(label "~{P_IOWR}"
-		(at 533.4 68.58 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3c258727-e3f5-47b6-b67b-5bf34ec2fd81")
+		(uuid "3cf57a73-7ed4-4859-b87a-33283a0c6f49")
 	)
 	(label "D6"
 		(at 180.34 85.09 0)
@@ -11683,7 +11397,7 @@
 		(uuid "404af860-c086-4958-9636-d5c782070a2a")
 	)
 	(label "A0"
-		(at 349.25 73.66 0)
+		(at 347.98 80.01 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11711,16 +11425,6 @@
 			(justify left bottom)
 		)
 		(uuid "493213f2-1d41-4fd9-8b22-07d9f9e8e460")
-	)
-	(label "~{CTRL_CE}"
-		(at 533.4 86.36 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4b4e1023-5c12-4f04-850f-3e3b3678b202")
 	)
 	(label "P_D3"
 		(at 468.63 86.36 0)
@@ -11821,6 +11525,16 @@
 			(justify left bottom)
 		)
 		(uuid "53675526-69c0-4fe3-887a-72a993544b52")
+	)
+	(label "~{P_DBGC}"
+		(at 533.4 86.36 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "544ab835-95da-4f54-a15c-24edc4a64e89")
 	)
 	(label "P_D2"
 		(at 468.63 83.82 0)
@@ -11933,7 +11647,7 @@
 		(uuid "68f0138d-bc13-4b1c-8f4f-85a8dd17ca95")
 	)
 	(label "A1"
-		(at 349.25 76.2 0)
+		(at 347.98 82.55 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12122,16 +11836,6 @@
 		)
 		(uuid "8c1d6c0d-4c98-4960-8a18-cd5c5be8d4cb")
 	)
-	(label "~{P_CSRD}"
-		(at 533.4 73.66 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8cefbd8a-1405-4d48-92a2-f6c6c21ebe6e")
-	)
 	(label "+5V"
 		(at 229.87 280.67 0)
 		(effects
@@ -12182,6 +11886,16 @@
 		)
 		(uuid "8eddef27-1ac8-4ba1-8ccf-1a6de0d126b9")
 	)
+	(label "~{DBGC}"
+		(at 274.32 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8ef75cb3-90d2-4706-8057-f31c90eed46c")
+	)
 	(label "A10"
 		(at 171.45 217.17 0)
 		(effects
@@ -12203,7 +11917,7 @@
 		(uuid "955e57d4-d3f2-42e5-a5ba-318cfa59b41f")
 	)
 	(label "P_A0"
-		(at 402.59 73.66 0)
+		(at 401.32 80.01 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12272,18 +11986,8 @@
 		)
 		(uuid "a2f3db4a-ead8-4147-b7af-b6c994ef0626")
 	)
-	(label "DATA_AB"
-		(at 533.4 78.74 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a441cb65-5ef6-4e99-8a79-4646e72f5d66")
-	)
 	(label "~{CSRD}"
-		(at 349.25 71.12 0)
+		(at 347.98 77.47 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12293,7 +11997,7 @@
 		(uuid "a55c24a5-5e8e-4059-a021-5476fa7a1e3a")
 	)
 	(label "3V3"
-		(at 375.92 55.88 0)
+		(at 374.65 62.23 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12341,16 +12045,6 @@
 			(justify left bottom)
 		)
 		(uuid "adefdee5-82a9-4acf-9467-cd39d9ad1ded")
-	)
-	(label "~{DATA_CE}"
-		(at 533.4 81.28 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "af6cdc65-d71c-4025-b84d-5db7afdca137")
 	)
 	(label "3V3"
 		(at 533.4 55.88 0)
@@ -12492,6 +12186,16 @@
 		)
 		(uuid "c1776d07-84ad-4807-b2d5-e788132375be")
 	)
+	(label "~{DATA_CE}"
+		(at 533.4 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c27c0c10-ffcf-45fa-8a3d-5f59dba72ec6")
+	)
 	(label "A3"
 		(at 171.45 175.26 0)
 		(effects
@@ -12521,6 +12225,16 @@
 			(justify left bottom)
 		)
 		(uuid "c700cee5-7a8a-4314-9da7-3580cad613e8")
+	)
+	(label "~{P_IOWR}"
+		(at 533.4 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c8507953-1c96-4bbe-9fa0-a7bfaee6e1d1")
 	)
 	(label "D5"
 		(at 238.76 82.55 0)
@@ -12553,7 +12267,7 @@
 		(uuid "cd4adcff-de3b-4cdb-8186-4c12221bdb27")
 	)
 	(label "3V3"
-		(at 349.25 93.98 0)
+		(at 347.98 100.33 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12613,7 +12327,7 @@
 		(uuid "d606a8aa-e096-4c02-bee1-f9f54241dbe4")
 	)
 	(label "~{P_CSRD}"
-		(at 402.59 71.12 0)
+		(at 401.32 77.47 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12691,6 +12405,16 @@
 			(justify left bottom)
 		)
 		(uuid "e410ef16-b3d6-4dff-a882-e14aa6b4e99c")
+	)
+	(label "~{P_CSRD}"
+		(at 533.4 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e424f91f-276b-43f2-b3bb-80934a30cd07")
 	)
 	(label "GND"
 		(at 533.4 76.2 0)
@@ -12782,16 +12506,6 @@
 		)
 		(uuid "ed531659-1906-414d-81e7-a769b0bab854")
 	)
-	(label "FA"
-		(at 208.28 217.17 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ef22d405-a791-4529-87eb-a52c325fb4fc")
-	)
 	(label "P_A10"
 		(at 407.67 231.14 0)
 		(effects
@@ -12841,6 +12555,16 @@
 			(justify left bottom)
 		)
 		(uuid "f4f409b5-6671-41e3-b779-a7095648b3cf")
+	)
+	(label "~{DBGC}"
+		(at 347.98 87.63 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f518a4ad-5249-427f-bd4d-5850a3c83329")
 	)
 	(label "P_D7"
 		(at 403.86 346.71 0)
@@ -14827,7 +14551,7 @@
 	)
 	(symbol
 		(lib_id "74xx:74LS245")
-		(at 375.92 83.82 0)
+		(at 374.65 90.17 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14836,7 +14560,7 @@
 		(fields_autoplaced yes)
 		(uuid "b5fb7d00-afbd-4209-986f-99e8d613cb12")
 		(property "Reference" "U2"
-			(at 378.0633 63.5 0)
+			(at 376.7933 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14845,7 +14569,7 @@
 			)
 		)
 		(property "Value" "74LVC245"
-			(at 378.0633 66.04 0)
+			(at 376.7933 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14854,7 +14578,7 @@
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-20_W7.62mm_Socket_LongPads"
-			(at 375.92 83.82 0)
+			(at 374.65 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14863,7 +14587,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS245"
-			(at 375.92 83.82 0)
+			(at 374.65 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14872,7 +14596,7 @@
 			)
 		)
 		(property "Description" "Octal BUS Transceivers, 3-State outputs"
-			(at 375.92 83.82 0)
+			(at 374.65 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15395,15 +15119,15 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_02x04_Odd_Even")
-		(at 219.71 214.63 0)
+		(lib_id "Connector_Generic:Conn_02x02_Odd_Even")
+		(at 219.71 212.09 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "efac74dd-d351-4d47-b2f3-f29d8c9c1fa9")
+		(uuid "e9ceaea8-a186-45d1-bd3e-d25b29599737")
 		(property "Reference" "J3"
 			(at 220.98 205.74 0)
 			(effects
@@ -15412,7 +15136,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_02x04_Odd_Even"
+		(property "Value" "Conn_02x02_Odd_Even"
 			(at 220.98 208.28 0)
 			(effects
 				(font
@@ -15420,8 +15144,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
-			(at 219.71 214.63 0)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
+			(at 219.71 212.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15430,7 +15154,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 219.71 214.63 0)
+			(at 219.71 212.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15439,7 +15163,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 219.71 214.63 0)
+			(at 219.71 212.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15447,28 +15171,16 @@
 			)
 		)
 		(pin "1"
-			(uuid "cdacaa7f-6d2d-48df-bf7f-900949c8b370")
+			(uuid "6e8f387d-08bf-4b40-bb31-982989448b32")
 		)
 		(pin "2"
-			(uuid "1f2a9829-533b-4862-a905-4aa6b2fcfaa7")
+			(uuid "2ee7b285-8975-45bc-b3eb-d4ad16d9f50c")
 		)
 		(pin "3"
-			(uuid "92446683-1e5c-4acd-b540-94ff04fa270f")
+			(uuid "792f196d-a787-4ca2-a505-97d9d9591e0b")
 		)
 		(pin "4"
-			(uuid "e3f389d4-c1e4-4bfa-91ac-b580282d248b")
-		)
-		(pin "5"
-			(uuid "b017344c-7f67-489b-b734-0c944c5be0dc")
-		)
-		(pin "6"
-			(uuid "bae51721-2a80-4ac5-8271-b92cf319e100")
-		)
-		(pin "7"
-			(uuid "0088f63c-2dca-4f9c-acc7-f7a899eeb44c")
-		)
-		(pin "8"
-			(uuid "37fde48a-32c7-4b1d-91ba-d92868a921fe")
+			(uuid "c872e16c-82a7-4cd6-8968-981a0491fae2")
 		)
 		(instances
 			(project "Amstrad-CPC-IO-Logger"

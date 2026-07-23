@@ -4,7 +4,7 @@
 .program csrd
 .side_set 1 opt
  
-    wait 0 gpio 22 side 1   ; Wait for low on CSRD (keep bus as input)
+    wait 0 gpio 26 side 1   ; Wait for low on CSRD (keep bus as input)
 
     set y, 1        
 
@@ -16,7 +16,7 @@
 
     out pins, 8    side 0   ; output the data and change direction of data buffer as Pico to CPC
 
-    wait 1 gpio 22          ; Wait for high on CSRD (return bus to input)
+    wait 1 gpio 26          ; Wait for high on CSRD (return bus to input)
 
     nop            side 1   ; keep bus direction as CPC -> Pico
 
@@ -33,8 +33,8 @@ void csrd_program_init(PIO pio, uint sm, uint offset) {
 
    // OUT reads GPIO 10 to GPIO 17 = D0..D7 
    sm_config_set_out_pins(&c, 10, 8);
-   sm_config_set_sideset_pins(&c, 21);
-   sm_config_set_in_pins(&c, 22);
+   sm_config_set_sideset_pins(&c, 22);
+   sm_config_set_in_pins(&c, 26);
 
     sm_config_set_out_shift(
         &c,

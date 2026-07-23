@@ -20,13 +20,14 @@
 #define P_D5 15
 #define P_D6 16
 #define P_D7 17
+#define P_DBGC 18
 
-#define P_IOWR 26
-#define P_CSRD 22
-#define P_DATA_AB 21
-#define P_DATA_CE 20
-#define P_ADHB_CE 19
-#define P_CTRL_CE 18
+#define P_IOWR 27
+#define P_CSRD 26
+#define P_DATA_AB 22
+#define P_DATA_CE 21
+#define P_ADHB_CE 20
+#define P_CTRL_CE 19
 
 
 void setup_gpio_pins(PIO pio);

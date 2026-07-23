@@ -114,6 +114,7 @@ uint32_t timingBuffer[CAPTURE_BUFFER_SIZE] __attribute__((aligned(32768)));
 uint32_t A0_A1;
 uint32_t A8_A15;
 uint32_t D0_D7;
+uint32_t DBGC;
 
 uint32_t writeIndex = 0;
 uint32_t readIndex = 0;
@@ -252,6 +253,7 @@ int main()
                 A0_A1 = get_A0_A1(captureBuffer[readIndex]);
                 A8_A15 = get_A8_A15(captureBuffer[readIndex]);
                 D0_D7 = get_D0_D7(captureBuffer[readIndex]);
+                DBGC = get_DBGC(captureBuffer[readIndex]);
 
                 if (A8_A15 == CRTC_INDEX_PORT) {
                     if (debugCRTCIndex) {
@@ -337,7 +339,7 @@ int main()
                     lastCRTCDataWrite = timingBuffer[readIndex];
                 
 
-                } else if (A8_A15 == CPC_IO_CAPTURE) {
+                } else if (!DBGC) {
 
                     if(D0_D7 <= LAST_REGISTER_INDEX) {
                         if(debugRRead) {
