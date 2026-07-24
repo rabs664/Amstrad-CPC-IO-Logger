@@ -1,6 +1,6 @@
 # Amstrad-CPC-IO-Logger
 
-![Amstrad CPC IO Logger Readme](https://github.com/user-attachments/assets/d6ec8927-3c3b-42e0-b8b1-1eefc8fb1832)
+<img width="1548" height="2064" alt="V2_0" src="https://github.com/user-attachments/assets/90da9a89-9b0b-44f4-bdac-fa8597fa8761" />
 
 >[!CAUTION]
 >USE AT YOUR OWN RISK.
@@ -25,7 +25,7 @@ The Amstrad CPC only uses the top 8 address lines, A8-A15, to address standard I
 ## Design Summary
 The discrete 74 series logic associated with Amstrad CPC IO Logger PCB presents two signals* to the Pico;
 - IOWR: Active low on an IO Write instruction from the Amstrad CPC
-- CSRD: Active low when on an IO read instruction from the Amstrad CPC for the Amstrad CPC IO Logger IO Address (currently F9E0).
+- CSRD: Active low when on an IO read instruction from the Amstrad CPC for the Amstrad CPC IO Logger IO Address.
 
 ![Amstrad CPC IO Logger Design](https://github.com/user-attachments/assets/c3cb42f6-fa9a-4867-8894-0f434ba8a66f)
 
@@ -108,14 +108,7 @@ By default the IO address used in the repository is set to F9E0. The following I
 - F9E0
 - F9F0
 
-FA and FB should not be used as these are also used by the FDC, see ![Issue 3](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/3).
-
-But see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2)
-
-The #define CPC_IO_CAPTURE      0xF9 in IOAddr.h also needs to be changed, to match the selected high byte address value.
-
-<img width="400" height="500" alt="20260606_100528" src="https://github.com/user-attachments/assets/96c53b9f-36d6-4a5b-8d9d-e779b871f97b" />
-
+<img width="173" height="165" alt="Address Jumper Settings" src="https://github.com/user-attachments/assets/dff114ac-00de-40d9-ab35-6dd7cc2c182a" />
 
 ## Project History
 ### 26 June 2026
@@ -124,6 +117,8 @@ Found a small problem with the IO Address Selection when sending Debug Commands 
 CRTC Register Logging
 ### 06 June 2026
 Removed V1.1 of the PCB
+### 24 July 2026
+Updated V2.0 of the PCB
 
 ## Acknowledgements
 - **NoRecess** for the inspiration and support on this project.
