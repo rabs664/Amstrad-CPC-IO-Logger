@@ -111,12 +111,12 @@ By default the IO address used in the repository is set to F9E0. The following I
 <img width="173" height="165" alt="Address Jumper Settings" src="https://github.com/user-attachments/assets/dff114ac-00de-40d9-ab35-6dd7cc2c182a" />
 
 ## Project History
-### 26 June 2026
-Found a small problem with the IO Address Selection when sending Debug Commands to the Pico. see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2) V2.0 in progress 
-### 17 April 2026 
-CRTC Register Logging
 ### 06 June 2026
 Removed V1.1 of the PCB
+### 17 April 2026 
+CRTC Register Logging
+### 26 June 2026
+Found a small problem with the IO Address Selection when sending Debug Commands to the Pico. see ![Issue 2](https://github.com/rabs664/Amstrad-CPC-IO-Logger/issues/2) V2.0 in progress
 ### 24 July 2026
 Updated V2.0 of the PCB
 
